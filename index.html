@@ -69,6 +69,7 @@
             font-stretch: expanded;
             text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
             margin-top: 0;
+            font-family: 'SF Pro';
         }
 
         #clock .colon {
@@ -80,6 +81,7 @@
             margin-left: -20px;
             margin-right: -20px;
             text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+            font-family: 'SF Pro';
         }
 
         #quick-actions {
@@ -92,6 +94,9 @@
             align-items: center;
             display: flex;
             flex-direction: column;
+            width: 335px;
+            height: 150px;
+            margin-bottom: 15px;
         }
 
         #quick-actions p {
@@ -173,6 +178,84 @@
             color: rgba(255, 255, 255, 0.452);
         }
 
+        #weather-info {
+            color: rgb(255, 255, 255);
+            font-size: 0.9rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1.2px solid rgba(255, 255, 255, 0.185);
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+            backdrop-filter: blur(50px);
+            padding: 20px;
+            border-radius: 25px;
+
+            width: 335px;
+            height: 150px;
+        }
+
+        #weather-info p {
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.674);
+
+        }
+
+        #weather-desc {
+            margin-bottom: 0;
+            height: 10px;
+        }
+
+        #weather-margin {
+            margin-top: 0;
+        }
+
+        .weather-hstack {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+    
+        }
+
+        .weather-vstack {
+            margin-left: auto;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .weather-hstack h1 {
+            font-weight: 200;
+            font-size: 50px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        #hourly-forecast {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .forecast-hour {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #forecast-icon {
+            text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.201);
+            font-size: 18px;
+        }
+
+        #widgets {
+            display: flex;
+            flex-direction: column;
+        }
+
     </style>
 </head>
 <body>
@@ -185,25 +268,35 @@
                 <span id="minutes"></span>
             </div>
         </div>
-        <div id="quick-actions">
-            <div id="search-container">
-                <div id="search-wrapper">
-                    <span id="search-icon">􀊫</span>
-                    <input type="text" id="search-input" placeholder="Search...">
+
+        <div id="widgets">
+            <div id="quick-actions">
+                <div id="search-container">
+                    <div id="search-wrapper">
+                        <span id="search-icon">􀊫</span>
+                        <input type="text" id="search-input" placeholder="Search...">
+                    </div>
+                </div>
+                
+
+                <p>􀎧 Pinned</p>
+
+                <div id="actions-grid">
+                    <a href="https://discord.com/channels/@me" class="action-icon"><img src="discord.png" alt="Discord"></a>
+                    <a href="https://www.youtube.com" class="action-icon"><img src="youtube.png" alt="YouTube"></a>
+                    <a href="https://www.x.com" class="action-icon"><img src="twitter.png" alt="Twitter"></a>
+                    <a href="https://www.github.com" class="action-icon"><img src="github.png" alt="GitHub"></a>
                 </div>
             </div>
+            <div id="weather-info">
 
-            <p>􀎧 Pinned</p>
-
-            <div id="actions-grid">
-                <a href="https://discord.com/channels/@me" class="action-icon"><img src="discord.png" alt="Discord"></a>
-                <a href="https://www.youtube.com" class="action-icon"><img src="youtube.png" alt="YouTube"></a>
-                <a href="https://www.x.com" class="action-icon"><img src="twitter.png" alt="Twitter"></a>
-                <a href="https://www.github.com" class="action-icon"><img src="github.png" alt="GitHub"></a>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        window.addEventListener('load', fetchWeather);
+    </script>
 </body>
 </html>
