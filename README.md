@@ -11,4 +11,4 @@ VisionOS Style NewTab for Chrome.
 7. Select the Extracted Folder (If there are sub directories, keep opening them until you reach the folder tha!t contains the source code)
 8. Enjoy!
 
-Credit to _.kewlaid on Discord for the Design Inspiration
+**Credit to _.kewlaid on Discord for the Design Inspiration**
