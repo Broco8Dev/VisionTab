@@ -1,0 +1,357 @@
+@font-face {
+    font-family: 'SF Pro';
+    src: url('fonts/SF-Pro.ttf') format('truetype');
+    font-stretch: normal;
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url('fonts/SF-Pro.ttf') format('truetype');
+    font-stretch: expanded;
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url('fonts/SF-Pro.ttf') format('truetype');
+    font-stretch: condensed;
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'SF Pro';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#main-container {
+    display: flex;
+    align-items: center;
+}
+
+#clock-container {
+    text-align: center;
+    margin-right: 150px;
+}
+
+#date {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #ffffffd8;
+    margin-bottom: 0px;
+    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+}
+
+#clock {
+    font-size: 6rem;
+    font-weight: 700;
+    color: #ffffff;
+    font-stretch: expanded;
+    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+    margin-top: 0;
+    font-family: 'SF Pro';
+}
+
+#clock .colon {
+    font-size: 6rem;
+    font-stretch: expanded;
+    font-weight: 700;
+    opacity: 0.6;
+    margin: 0;
+    margin-left: -20px;
+    margin-right: -20px;
+    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+    font-family: 'SF Pro';
+}
+
+#quick-actions {
+    border: 1.2px solid rgba(255, 255, 255, 0.185);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+    backdrop-filter: blur(50px);
+    padding: 20px;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 335px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+#quick-actions p {
+    color: white;
+    margin-top: 0;
+    font-family: 'SF Pro';
+}
+
+#actions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.action-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.217);
+}
+
+.action-icon:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    scale: 1.1;
+}
+
+.action-icon img {
+    width: 60px;
+    border-radius: 13px;
+    height: 60px;
+    object-fit:cover;
+}
+
+#search-container {
+    margin-bottom: 15px;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#search-wrapper {
+    position: relative;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 0px 10px 35px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.253);
+    color: white;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.158);
+    font-size: 16px;
+    outline: none;
+}
+
+#search-input::placeholder {
+    color: rgba(255, 255, 255, 0.452);
+    font-family: 'SF Pro';
+}
+
+#search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.452);
+}
+
+#weather-info {
+    color: rgb(255, 255, 255);
+    font-size: 0.9rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1.2px solid rgba(255, 255, 255, 0.185);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+    backdrop-filter: blur(50px);
+    padding: 20px;
+    border-radius: 25px;
+
+    width: 335px;
+    height: 150px;
+}
+
+#weather-info p {
+    margin: 5px 0;
+    color: rgba(255, 255, 255, 0.674);
+
+}
+
+#weather-desc {
+    margin-bottom: 0;
+    height: 10px;
+}
+
+#weather-margin {
+    margin-top: 0;
+}
+
+.weather-hstack {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.weather-vstack {
+    margin-left: auto;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-hstack h1 {
+    font-weight: 200;
+    font-size: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#hourly-forecast {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.forecast-hour {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#forecast-icon {
+    text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.201);
+    font-size: 18px;
+}
+
+#widgets {
+    display: flex;
+    flex-direction: column;
+}
+
+#settings-popup {
+    width: 110px;
+
+    border-radius: 20px;
+    border: 1.2px solid rgba(255, 255, 255, 0.185);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+    backdrop-filter: blur(50px);
+    transition: all 0.3s ease;
+    margin-left: auto;
+    margin-right: 80px;
+    transform: translateY(-40px);
+    display: block;
+}
+
+#settings-popup h1 {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 10px;
+    margin-bottom: 2px;
+}
+
+#settings-button {
+    font-size: 24px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    z-index: 100;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 30px;
+    border-radius: 50px;
+    border: 1.2px solid rgba(255, 255, 255, 0.185);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+    backdrop-filter: blur(50px);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#settings-button h1 {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.543);
+}
+
+#settings-button:hover {
+    scale: 1.1;
+}
+
+.settings-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+
+.toggle-switch, .toggle-switch .toggle-knob {
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.toggle-switch {
+    transform: translateX(6px);
+    height: 30px;
+    width: 55px;
+    display: inline-block;
+    background-color: #00000034;
+    margin: 2px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.233);
+}
+.toggle-switch:last-child {
+    margin-bottom: 5px;
+}
+
+div {
+    transition: all 0.3s ease;
+}
+
+.toggle-switch .toggle-knob {
+    width: 28px;
+    height: 26px;
+    display: inline-block;
+    background-color: #ffffff;
+    border: solid 1px rgba(126, 126, 126, 0.07);
+    
+    border-radius: 26px;
+    margin: 1px 1px;
+    
+}
+
+.toggle-switch.active {
+    background-color: #4ff16a;
+    box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.354);
+}
+
+.toggle-switch.active .toggle-knob {
+    margin-left: 24px;
+}
+
