@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <style>
+        @font-face {
+            font-family: 'SF Pro';
+            src: url('fonts/SF-Pro.ttf') format('truetype');
+            font-stretch: normal;
+            font-weight: 100 900;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'SF Pro';
+            src: url('fonts/SF-Pro.ttf') format('truetype');
+            font-stretch: expanded;
+            font-weight: 100 900;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'SF Pro';
+            src: url('fonts/SF-Pro.ttf') format('truetype');
+            font-stretch: condensed;
+            font-weight: 100 900;
+            font-style: normal;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'SF Pro';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        #main-container {
+            display: flex;
+            align-items: center;
+        }
+
+        #clock-container {
+            text-align: center;
+            margin-right: 150px;
+        }
+
+        #date {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #ffffffd8;
+            margin-bottom: 0px;
+            text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+        }
+
+        #clock {
+            font-size: 6rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-stretch: expanded;
+            text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+            margin-top: 0;
+        }
+
+        #clock .colon {
+            font-size: 6rem;
+            font-stretch: expanded;
+            font-weight: 700;
+            opacity: 0.6;
+            margin: 0;
+            margin-left: -20px;
+            margin-right: -20px;
+            text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+        }
+
+        #quick-actions {
+            border: 1.2px solid rgba(255, 255, 255, 0.185);
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+            backdrop-filter: blur(50px);
+            padding: 20px;
+            border-radius: 25px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #quick-actions p {
+            color: white;
+            margin-top: 0;
+            font-family: 'SF Pro';
+        }
+
+        #actions-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.217);
+        }
+
+        .action-icon:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            scale: 1.1;
+        }
+
+        .action-icon img {
+            width: 60px;
+            border-radius: 13px;
+            height: 60px;
+            object-fit:cover;
+        }
+
+        #search-container {
+            margin-bottom: 15px;
+            width: 100%;
+
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        #search-wrapper {
+            position: relative;
+            width: 100%;
+
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 10px 0px 10px 35px;
+            border: none;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.253);
+            color: white;
+            box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.158);
+            font-size: 16px;
+            outline: none;
+        }
+
+        #search-input::placeholder {
+            color: rgba(255, 255, 255, 0.452);
+            font-family: 'SF Pro';
+        }
+
+        #search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.452);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <div id="clock-container">
+            <div id="date"></div>
+            <div id="clock">
+                <span id="hours"></span>
+                <span class="colon">:</span>
+                <span id="minutes"></span>
+            </div>
+        </div>
+        <div id="quick-actions">
+            <div id="search-container">
+                <div id="search-wrapper">
+                    <span id="search-icon">􀊫</span>
+                    <input type="text" id="search-input" placeholder="Search...">
+                </div>
+            </div>
+
+            <p>􀎧 Pinned</p>
+
+            <div id="actions-grid">
+                <a href="https://discord.com/channels/@me" class="action-icon"><img src="discord.png" alt="Discord"></a>
+                <a href="https://www.youtube.com" class="action-icon"><img src="youtube.png" alt="YouTube"></a>
+                <a href="https://www.x.com" class="action-icon"><img src="twitter.png" alt="Twitter"></a>
+                <a href="https://www.github.com" class="action-icon"><img src="github.png" alt="GitHub"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

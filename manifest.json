@@ -1,0 +1,9 @@
+{
+    "name": "BrocoTab",
+    "description": "VisionOS NewTab Style.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "chrome_url_overrides": { "newtab": "index.html" },
+    "web_accessible_resources": ["SF-Pro.ttf"],
+    "permissions": ["storage"]
+}
