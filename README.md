@@ -10,3 +10,5 @@ HOW TO INSTALL:
 6. Click 'Load Unpacked'
 7. Select the Extracted Folder (If there are sub directories, keep opening them until you reach the folder tha!t contains the source code)
 8. Enjoy!
+
+Credit to _.kewlaid on Discord for the Design Inspiration
