@@ -1,7 +1,7 @@
 # BrocoTab
 VisionOS Style NewTab for Chrome.
 
-HOW TO INSTALL:
+## How to Install:
 1. Install the Github as a .zip or Clone the repository.
 2. Extract the .zip File (If it is a .zip)
 3. On the Top Right of Chrome, Click The Puzzle Icon
