@@ -98,42 +98,42 @@ input[type="range"] {
     cursor: pointer;
     outline: none;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 12px;
+    background: none;
+    box-shadow: 1px 1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px 1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
 }
   
 input[type="range"]::-webkit-slider-runnable-track {
-    height: 15px;
-    background: rgba(0, 0, 0, 0.45);
-    border-radius: 16px;
-    box-shadow: inset 0px 3px 7px rgba(0, 0, 0, 0.317);
+    height: 34px;
+    border-radius: 12px;
+    background: var(--sb-background);
+    background-blend-mode: luminosity, color-burn;
+    background-blend-mode: luminosity;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-
     -webkit-appearance: none;
     appearance: none; 
 
-    height: 15px;
-    width: 15px;
-    background-color: #fff;
-    border-radius: 50%;
-    border: 2px solid rgb(0, 119, 255);;
+    height: 0px;
+    width: 0px;
+    background-color: transparent;
 
-    box-shadow: -407px 0 0 400px rgb(0, 119, 255);
+    box-shadow: -400px 0 0 400px rgba(255, 255, 255, 0.23);
 }
 
 .color-wheel {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     background-color: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
-    opacity: 0.9;
-    margin-left: 5px;
+    opacity: 1;
+    box-shadow: none;
 }
 
 .color-wheel:hover {
@@ -242,7 +242,6 @@ input[type="range"]::-webkit-slider-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.217);
 }
 
@@ -463,12 +462,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 #settings-menu {
-    animation: settings-close 0.5s ease;
     position: fixed;
     top: 20px;
-    right: -400px;
-    width: 400px;
-    height: calc(100vh - 40px);
+    right: 20px;
+    width: 40px;
+    height: 40px;
 
     box-sizing: border-box;
     padding: 10px 10px;
@@ -486,10 +484,18 @@ input[type="range"]::-webkit-slider-thumb {
     background-blend-mode: luminosity;
     backdrop-filter: blur(20px);
     outline:none;
+
+    opacity: 0;
+    filter: blur(50px);
+    user-select: none;
+    cursor: default;
+
+    *{
+        scale: 0;
+    }
 }
 
 #settings-menu.open {
-    animation: settings-open 0.5s cubic-bezier(0, 0, 0, 1);
     position: fixed;
     top: 20px;
     right: 20px;
@@ -512,6 +518,13 @@ input[type="range"]::-webkit-slider-thumb {
     background-blend-mode: luminosity;
     backdrop-filter: blur(20px);
     outline:none;
+
+    opacity: 1;
+    filter: blur(0px);
+
+    *{
+        scale: 1;
+    }
 }
 
 #settings-header {
@@ -551,8 +564,17 @@ input[type="range"]::-webkit-slider-thumb {
     color: var(--date-color);
 }
 
+.setting-slider-label {
+    font-size: 14px;
+    font-weight: 600;
+    transform: translate(10px, 19px);
+    height: 0px;
+    font-weight: 400;
+    color: white;
+}
+
 .setting-input {
-    width: calc(100% - 40px);
+    width: calc(100% - 10px);
     padding: 9px;
     cursor: pointer;
     box-sizing: border-box;
@@ -581,9 +603,20 @@ input[type="range"]::-webkit-slider-thumb {
     
 }
 
+#setting-applyreset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#uploadDiv {
+    color: rgba(255, 255, 255, 0.23);
+}
+
 #uploadDiv:hover {
-    transform: scale(1.1);
-    box-shadow: 1px -4px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -4px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    color: white;
+    background-color: var(--sb-background);
 }
 
 #uploadDiv:active{
@@ -594,7 +627,7 @@ background-color: rgba(255, 255, 255, 0.142);
 
 
 #save-settings {
-    width: 200px;
+    width: calc(200% / 3);
     min-height: 35px;
     box-sizing: border-box;
     display: flex;
@@ -615,7 +648,7 @@ background-color: rgba(255, 255, 255, 0.142);
 }
 
 #reset-settings {
-    width: 200px;
+    width: calc(100% / 3);
     min-height: 35px;
     box-sizing: border-box;
     display: flex;
@@ -636,13 +669,13 @@ background-color: rgba(255, 255, 255, 0.142);
 }
 
 #reset-settings:hover{
-    scale: 1.1;
-    box-shadow: 1px -4px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -4px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    width: calc(100% / 3 + 40px);
+    color: white;
 }
 
 #save-settings:hover{
-    scale: 1.1;
-    box-shadow: 1px -4px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -4px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    width: calc(200% / 3 + 40px);
+    color: white;
 }
 
 #save-settings:active{
@@ -674,17 +707,16 @@ background-color: rgba(255, 255, 255, 0.142);
 }
 
 .toggle-switch {
-    transform: translateX(6px);
     height: 30px;
-    width: 55px;
+    width: 50px;
     display: inline-block;
-    background-color: #00000034;
-    margin: 2px;
-    margin-top: -10px;
-    margin-bottom: 0;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.233);
+    border-radius: 15px;
+    background: var(--sb-background);
+    background-blend-mode: luminosity, color-burn;
+    box-shadow: 1px 1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px 1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    border: none;
 }
 .toggle-switch:last-child {
     margin-bottom: 5px;
@@ -706,7 +738,6 @@ background-color: rgba(255, 255, 255, 0.142);
 }
 
 div {
-    transition: all 0.3s ease;
 }
   
 
@@ -728,22 +759,21 @@ div {
 }
 
 .toggle-switch .toggle-knob {
-    width: 28px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     display: inline-block;
-    background-color: #ffffff;
-    border: solid 1px rgba(126, 126, 126, 0.07);
+    background-color: rgba(255, 255, 255, 0.9);
     
     border-radius: 26px;
-    margin: 1px 1px;
+    margin: 4px 4px;
 }
 
 .toggle-switch.active {
-    background-color: #4ff16a;
+    background-color: #32d74b;
     box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.354);
 }
 
 .toggle-switch.active .toggle-knob {
-    margin-left: 24px;
+    margin: 4px 25px;
 }
 

@@ -52,17 +52,21 @@
             <button id="settings-close">􀆄</button>
         </div>
         <div id="settings-list">
-            <label for="toggle-24h" class="setting-label">24h Time:</label>
-            <span class="toggle-24h toggle-switch">
-                <span class="toggle-knob"></span>
-            </span>
-            <label for="toggle-celsius" class="setting-label">Use Celsius:</label>
-            <span class="toggle-celsius toggle-switch">
-                <span class="toggle-knob"></span>
-            </span>
+            <div class="setting">
+                <label for="toggle-24h" class="setting-label">24h Time:</label>
+                <span class="toggle-24h toggle-switch">
+                    <span class="toggle-knob"></span>
+                </span>
+            </div>
+            
+            <div class="setting">
+                <label for="toggle-celsius" class="setting-label">Use Celsius:</label>
+                <span class="toggle-celsius toggle-switch">
+                    <span class="toggle-knob"></span>
+                </span>
+            </div>
 
             <div class="setting">
-
                 <label for="fileInput" class="setting-label">Background Image:</label>
                 <div class="settings-center">
                 <div class="setting-input" id="uploadDiv">
@@ -75,14 +79,14 @@
             <div class="setting">
                 <label for="clock-color" class="setting-label">Clock Color:</label>
                 <input type="color" id="clock-color" name="clock-color" class="color-wheel" value="#FFFFFF">
-                <label class="setting-label">Clock Alpha:</label>
+                <label class="setting-slider-label">􀪫 Alpha</label>
                 <input type="range" id="clock-alpha" name="clock-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="1">
             </div>
     
             <div class="setting">
                 <label for="clock-colon" class="setting-label">Clock Colon Color:</label>
                 <input type="color" id="clock-colon" name="clock-colon" class="color-wheel" value="#FFFFFF">
-                <label class="setting-label">Clock Colon Alpha:</label>
+                <label class="setting-slider-label">􀪫 Alpha</label>
                 <input type="range" id="clock-colon-alpha" name="clock-colon-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.5">
             </div>
     
@@ -94,7 +98,7 @@
             <div class="setting">
                 <label for="date-color" class="setting-label">Subtext Color:</label>
                 <input type="color" id="date-color" name="date-color" class="color-wheel" value="#FFFFFF">
-                <label class="setting-label">Subtext Alpha:</label>
+                <label class="setting-slider-label"">􀪫 Alpha</label>
                 <input type="range" id="date-alpha" name="date-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.75">
             </div>
     
@@ -106,7 +110,7 @@
             <div class="setting">
                 <label for="base-background" class="setting-label">Base Background Color:</label>
                 <input type="color" id="base-background" name="base-background" class="color-wheel">
-                <label class="setting-label">Base Background Alpha:</label>
+                <label class="setting-slider-label">􀪫 Alpha</label>
                 <input type="range" id="base-alpha" name="base-background-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0">
             </div>
     
@@ -133,13 +137,15 @@
             <div class="setting">
                 <label for="sb-background" class="setting-label">Field Background Color:</label>
                 <input type="color" id="sb-background" name="sb-background" class="color-wheel">
-                <label class="setting-label">Field Background Alpha:</label>
+                <label class="setting-slider-label">􀪫 Alpha</label>
                 <input type="range" id="sb-alpha" name="sb-background-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.45">
             </div>
         </div>
 
-        <button id="save-settings">􀫸 Apply</button>
-        <button id="reset-settings">􀅈 Reset</button>
+        <div id="setting-applyreset">
+            <button id="save-settings">􀫸 Apply</button>
+            <button id="reset-settings">􀅈 Reset</button>
+        </div>
 
     <script src="assets/script.js"></script>
     <script>
