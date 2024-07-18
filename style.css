@@ -33,6 +33,7 @@ body, html {
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
+    user-select: none;
     background-attachment: fixed;
 }
 
@@ -113,6 +114,11 @@ body, html {
     align-items: center;
     transition: all 0.3s ease;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.217);
+}
+
+.action-icon:active {
+        transform: scale(0.8);
+        background-color: rgba(255, 255, 255, 0.142);
 }
 
 .action-icon:hover {
@@ -255,11 +261,24 @@ body, html {
     border: 1.2px solid rgba(255, 255, 255, 0.185);
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
     backdrop-filter: blur(50px);
-    transition: all 0.3s ease;
     margin-left: auto;
     margin-right: 80px;
+
+
+    opacity: 0;
+    filter: scale(0.9);
+    transform: translateY(-50px);
+    transition: all 0.3s ease;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+#settings-popup.show {
+    opacity: 1;
+    filter: blur(0);
     transform: translateY(-40px);
-    display: block;
+    filter: scale(1);
+    pointer-events: auto;
 }
 
 #settings-popup h1 {
@@ -288,6 +307,11 @@ body, html {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+#settings-button:active {
+    transform: scale(0.8);
+    background-color: rgba(255, 255, 255, 0.142);
 }
 
 #settings-button h1 {
@@ -329,9 +353,25 @@ body, html {
     margin-bottom: 5px;
 }
 
+@keyframes fade-in {
+    from { 
+        opacity: 0; 
+        filter: blur(20px);
+    }
+    to { 
+        opacity: 1; 
+        filter: blur(0);
+    }
+}
+
+.fade-in {
+    animation: fade-in 0.5s ease;
+}
+
 div {
     transition: all 0.3s ease;
 }
+  
 
 .hidden {
     opacity: 0;
@@ -342,6 +382,7 @@ div {
 #fileInput {
     display: none;
 }
+
 .settings-center {
     display: flex;
     align-items: center;
@@ -371,6 +412,11 @@ div {
     text-align: center;
 }
 
+.settings-bgbutton:active {
+    transform: scale(0.8);
+    background-color: rgba(255, 255, 255, 0.142);
+}
+
 .settings-bgbutton:hover {
     scale:1.05;
 }
@@ -389,7 +435,6 @@ div {
     
     border-radius: 26px;
     margin: 1px 1px;
-    
 }
 
 .toggle-switch.active {

@@ -92,44 +92,8 @@ document.getElementById('uploadDiv').addEventListener('click', function() {
 
 function toggleSettingsPanel() {
     const settingsPopup = document.getElementById('settings-popup');
-    const isHidden = getComputedStyle(settingsPopup).display === 'none';
-  
-    if (isHidden) {
-
-      settingsPopup.style.display = 'block';
-      settingsPopup.style.opacity = '0';
-      settingsPopup.style.transform = 'scale(0.95)';
-  
-      let opacity = 0;
-      let scale = 0.95;
-      const animationInterval = setInterval(() => {
-        opacity += 0.1;
-        scale += 0.01;
-        settingsPopup.style.opacity = opacity;
-        settingsPopup.style.transform = `scale(${scale})`;
-  
-        if (opacity >= 1) {
-          clearInterval(animationInterval);
-          settingsPopup.style.transform = 'scale(1)';
-        }
-      }, 20);
-    } else {
-      let opacity = 1;
-      let scale = 1;
-      const animationInterval = setInterval(() => {
-        opacity -= 0.1;
-        scale -= 0.01;
-        settingsPopup.style.opacity = opacity;
-        settingsPopup.style.transform = `scale(${scale})`;
-  
-        if (opacity <= 0) {
-          clearInterval(animationInterval);
-          settingsPopup.style.display = 'none';
-          settingsPopup.style.transform = 'scale(1)';
-        }
-      }, 20);
-    }
-  }
+    settingsPopup.classList.toggle('show');
+}
 
 function updateDateTime() {
     const now = new Date();
@@ -142,10 +106,29 @@ function updateDateTime() {
         hours = hours % 12 || 12;
     }
 
-    document.getElementById('date').textContent = dateString;
-    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').textContent = minutes;
+    const dateElement = document.getElementById('date');
+    const hoursElement = document.getElementById('hours');
+    const minutesElement = document.getElementById('minutes');
+
+    if (dateElement.textContent !== dateString) {
+        dateElement.textContent = dateString;
+        dateElement.classList.add('fade-in');
+        setTimeout(() => dateElement.classList.remove('fade-in'), 500);
+    }
+
+    if (hoursElement.textContent !== hours.toString().padStart(2, '0')) {
+        hoursElement.textContent = hours.toString().padStart(2, '0');
+        hoursElement.classList.add('fade-in');
+        setTimeout(() => hoursElement.classList.remove('fade-in'), 500);
+    }
+
+    if (minutesElement.textContent !== minutes) {
+        minutesElement.textContent = minutes;
+        minutesElement.classList.add('fade-in');
+        setTimeout(() => minutesElement.classList.remove('fade-in'), 500);
+    }
 }
+
 
 document.getElementById('search-input').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
@@ -199,7 +182,7 @@ function displayCurrentWeather(data) {
         <p style="color: white; margin-top: 0; margin-bottom: 0;">􀇕 Weather</p>
 
         <div class="weather-hstack">
-            <h1>${temperature}°</h1>
+            <h1 id="weather-temp">${temperature}°</h1>
 
             <div class="weather-vstack">
                 <p id="weather-desc">${weatherDescription}</p>
@@ -208,7 +191,22 @@ function displayCurrentWeather(data) {
         </div>
     `;
     
-    document.getElementById('weather-info').innerHTML = weatherHTML;
+    const weatherInfoElement = document.getElementById('weather-info');
+    weatherInfoElement.innerHTML = weatherHTML;
+
+    const tempElement = document.getElementById('weather-temp');
+    const descElement = document.getElementById('weather-desc');
+    const marginElement = document.getElementById('weather-margin');
+
+    tempElement.classList.add('fade-in');
+    descElement.classList.add('fade-in');
+    marginElement.classList.add('fade-in');
+
+    setTimeout(() => {
+        tempElement.classList.remove('fade-in');
+        descElement.classList.remove('fade-in');
+        marginElement.classList.remove('fade-in');
+    }, 500);
 }
 
 function displayHourlyForecast(data) {
@@ -232,7 +230,7 @@ function displayHourlyForecast(data) {
         const weatherDescription = getWeatherIcon(weatherCode);
 
         forecastHTML.push(`
-            <div class="forecast-hour">
+            <div class="forecast-hour fade-in">
                 <p>${hour}${is24HourFormat ? ':00' : period}</p>
                 <p id="forecast-icon" style="color: ${weatherDescription.color};">${weatherDescription.icon}</p>
                 <p>${temperature}°</p>
@@ -246,8 +244,18 @@ function displayHourlyForecast(data) {
         </div>
     `;
 
-    document.getElementById('weather-info').innerHTML += hourlyForecastHTML;
+    const weatherInfoElement = document.getElementById('weather-info');
+    weatherInfoElement.innerHTML += hourlyForecastHTML;
+
+    const forecastHourElements = document.querySelectorAll('.forecast-hour');
+    forecastHourElements.forEach((element) => {
+        element.classList.add('fade-in');
+        setTimeout(() => {
+            element.classList.remove('fade-in');
+        }, 500);
+    });
 }
+
 
 function getWeatherIcon(code) {
     const weatherDetails = {
