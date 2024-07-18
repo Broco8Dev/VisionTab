@@ -10,6 +10,7 @@
   <strong><a href="https://discord.gg/yx35bgRxF4">Discord</a></strong>
   •
   <strong><a href="https://twitter.com/Broco8Dev">BrocoDev's Twitter</a></strong>
+  •
   <strong><a href="https://twitter.com/_kewlaid">KewlAid's Twitter</a></strong>
 </p>
 
