@@ -1,4 +1,4 @@
-# VisionTab
+# BrocoTab
 VisionOS Style NewTab for Chrome.
 
 ## How to Install:
@@ -11,6 +11,4 @@ VisionOS Style NewTab for Chrome.
 7. Select the Extracted Folder (If there are sub directories, keep opening them until you reach the folder tha!t contains the source code)
 8. Enjoy!
 
-## How to Customize:
-1. In the Launcher, Press the gear icon on the top right.
-2. The rest is self explanatory.
+**Credit to _.kewlaid on Discord for the Design Inspiration**

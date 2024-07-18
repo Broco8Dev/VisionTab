@@ -4,73 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>New Tab</title>
+    <link rel="icon" type="image/x-icon" target="_blank" href="assets/favicon.png">
+    <title>VisionTab</title>
 </head>
 <body>
-    <div id="main-container">
-        <div id="clock-container">
-            <div id="date"></div>
-            <div id="clock">
-                <span id="hours"></span>
-                <span class="colon">:</span>
-                <span id="minutes"></span>
-            </div>
-        </div>
-
-        <div id="widgets">
-            <div id="quick-actions">
-                <div id="search-container">
-                    <div id="search-wrapper">
-                        <span id="search-icon">􀊫</span>
-                        <input type="text" id="search-input" placeholder="Search...">
-                    </div>
-                </div>
-                
-
-                <p>􀎧 Pinned</p>
-
-                <div id="actions-grid">
-                    <a href="https://discord.com/channels/@me" class="action-icon"><img src="discord.png" alt="Discord"></a>
-                    <a href="https://www.youtube.com" class="action-icon"><img src="youtube.png" alt="YouTube"></a>
-                    <a href="https://www.x.com" class="action-icon"><img src="twitter.png" alt="Twitter"></a>
-                    <a href="https://www.github.com" class="action-icon"><img src="github.png" alt="GitHub"></a>
-                </div>
-            </div>
-            <div id="weather-info">
-
-            </div>
+    <div id="clock-container">
+        <div id="date"></div>
+        <div id="clock">
+            <span id="hours"></span>
+            <span id="colon">:</span>
+            <span id="minutes"></span>
         </div>
     </div>
 
-    <div class="settings-container">
-        <div id="settings-button">
-            <h1>􀍟</h1>
-        </div>
+    <div id="widgets">
+        <div id="quick-actions">
+            <div id="searchbar">
+                <p>􀊫</p>
+                <form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
+                    <input name="q" type="text" placeholder="Search" autocomplete="off">
+                </form>
+            </div>
+        
+            <p class="section-label">􀎧 Pinned</p>
 
-        <div id="settings-popup">
-            <h1>24h Time</h1>
+            <div id="actions-grid">
+                <a href="https://discord.com/channels/@me" class="action-icon"><img src="assets/discord.png" alt="Discord"></a>
+                <a href="https://www.youtube.com" class="action-icon"><img src="assets/youtube.png" alt="YouTube"></a>
+                <a href="https://www.x.com" class="action-icon"><img src="assets/twitter.png" alt="Twitter"></a>
+                <a href="https://www.github.com" class="action-icon"><img src="assets/github.png" alt="GitHub"></a>
+            </div>
+        </div>
+        <div id="weather-info">
+
+        </div>
+    </div>
+</div>
+
+    
+    <div id="settings-button">
+        <h1>􀍟</h1>
+    </div>
+
+    <div id="settings-menu">
+        <div id="settings-header">
+            <h2>􀍟 Settings</h2>
+            <button id="settings-close">􀆄</button>
+        </div>
+        <div id="settings-list">
+            <label for="toggle-24h" class="setting-label">24h Time:</label>
             <span class="toggle-24h toggle-switch">
                 <span class="toggle-knob"></span>
-              </span>
-            <h1>Celsius</h1>
+            </span>
+            <label for="toggle-celsius" class="setting-label">Use Celsius:</label>
             <span class="toggle-celsius toggle-switch">
                 <span class="toggle-knob"></span>
-              </span>
-              <h1>BG Image</h1>
+            </span>
 
-              <div class="settings-center">
-                <div class="settings-bgbutton" id="uploadDiv">
-                    <h2>􀈃 Import</h2>
+            <div class="setting">
+
+                <label for="fileInput" class="setting-label">Background Image:</label>
+                <div class="settings-center">
+                <div class="setting-input" id="uploadDiv">
+                    􀈃 Import
                 </div>
                 <input type="file" id="fileInput" accept="image/*">
             </div>
+            </div>
+    
+            <div class="setting">
+                <label for="clock-color" class="setting-label">Clock Color:</label>
+                <input type="color" id="clock-color" name="clock-color" class="color-wheel" value="#FFFFFF">
+                <label class="setting-label">Clock Alpha:</label>
+                <input type="range" id="clock-alpha" name="clock-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="1">
+            </div>
+    
+            <div class="setting">
+                <label for="clock-colon" class="setting-label">Clock Colon Color:</label>
+                <input type="color" id="clock-colon" name="clock-colon" class="color-wheel" value="#FFFFFF">
+                <label class="setting-label">Clock Colon Alpha:</label>
+                <input type="range" id="clock-colon-alpha" name="clock-colon-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.5">
+            </div>
+    
+            <div class="setting">
+                <label for="clock-size" class="setting-label">Clock Size:</label>
+                <input placeholder="100px" type="text" id="clock-size" name="clock-size" class="setting-input" value="100px">
+            </div>
+    
+            <div class="setting">
+                <label for="date-color" class="setting-label">Subtext Color:</label>
+                <input type="color" id="date-color" name="date-color" class="color-wheel" value="#FFFFFF">
+                <label class="setting-label">Subtext Alpha:</label>
+                <input type="range" id="date-alpha" name="date-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.75">
+            </div>
+    
+            <div class="setting">
+                <label for="date-size" class="setting-label">Date Size:</label>
+                <input placeholder="25px" type="text" id="date-size" name="date-size" class="setting-input" value="">
+            </div>
+    
+            <div class="setting">
+                <label for="base-background" class="setting-label">Base Background Color:</label>
+                <input type="color" id="base-background" name="base-background" class="color-wheel">
+                <label class="setting-label">Base Background Alpha:</label>
+                <input type="range" id="base-alpha" name="base-background-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0">
+            </div>
+    
+            <div class="setting">
+                <label for="base-border" class="setting-label">Base Border:</label>
+                <input placeholder="􀉨 1px solid rgba(255, 255, 255, 0.10)" type="text" id="base-border" name="base-border" class="setting-input" value="">
+            </div>
+    
+            <div class="setting">
+                <label for="base-roundness" class="setting-label">Base Roundness:</label>
+                <input placeholder="24px" type="text" id="base-roundness" name="base-roundness" class="setting-input" value="">
+            </div>
+    
+            <div class="setting">
+                <label for="base-shadow" class="setting-label">Base Shadow:</label>
+                <input placeholder="􀄾 􀑹 􀉨 0px 0px 20px #0000007a;" type="text" id="base-shadow" name="base-shadow" class="setting-input" value="">
+            </div>
+    
+            <div class="setting">
+                <label for="sc-roundness" class="setting-label">Shortcut Roundness (%):</label>
+                <input placeholder="21%" type="text" id="sc-roundness" name="sc-roundness" class="setting-input" value="">
+            </div>
+    
+            <div class="setting">
+                <label for="sb-background" class="setting-label">Field Background Color:</label>
+                <input type="color" id="sb-background" name="sb-background" class="color-wheel">
+                <label class="setting-label">Field Background Alpha:</label>
+                <input type="range" id="sb-alpha" name="sb-background-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.45">
+            </div>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+        <button id="save-settings">􀫸 Apply</button>
+        <button id="reset-settings">􀅈 Reset</button>
+
+    <script src="assets/script.js"></script>
     <script>
         window.addEventListener('load', fetchWeather);
         window.addEventListener('load', fetchAndSetBackgroundImage);
     </script>
+    <script>
+        const pickrOptions = {
+            theme: 'classic',
+            components: {
+                preview: true,
+                opacity: true,
+                hue: true,
+                interaction: {
+                    hex: true,
+                    rgba: true,
+                    hsla: true,
+                    hsva: true,
+                    cmyk: true,
+                    input: true,
+                    clear: true,
+                    save: true
+                }
+            }
+        };
+    
+        const clockColorPicker = Pickr.create({
+            el: '#clock-color-picker',
+            default: '#FFFFFF',
+            ...pickrOptions
+        });
+    
+        const clockColonPicker = Pickr.create({
+            el: '#clock-colon-picker',
+            default: '#FFFFFF',
+            ...pickrOptions
+        });
+    
+        const dateColorPicker = Pickr.create({
+            el: '#date-color-picker',
+            default: '#FFFFFF',
+            ...pickrOptions
+        });
+    
+        const baseBackgroundPicker = Pickr.create({
+            el: '#base-background-picker',
+            default: 'rgba(0, 0, 0, 0)',
+            ...pickrOptions
+        });
+    
+        const sbBackgroundPicker = Pickr.create({
+            el: '#sb-background-picker',
+            default: 'rgba(255, 255, 255, 0.45)',
+            ...pickrOptions
+        });
+    
+        // Add event listeners to handle color changes
+        [clockColorPicker, clockColonPicker, dateColorPicker, baseBackgroundPicker, sbBackgroundPicker].forEach(picker => {
+            picker.on('save', (color, instance) => {
+                const rgba = color.toRGBA();
+                console.log(instance.options.el.id, rgba);
+                // Here you can add logic to save the color or update the UI
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+<!-- <div id="settings-popup">
+    <h1>24h Time</h1>
+    <span class="toggle-24h toggle-switch">
+        <span class="toggle-knob"></span>
+      </span>
+    <h1>Celsius</h1>
+    <span class="toggle-celsius toggle-switch">
+        <span class="toggle-knob"></span>
+      </span>
+      <h1>BG Image</h1>
+
+      <div class="settings-center">
+        <div class="settings-bgbutton" id="uploadDiv">
+            <h2>􀈃 Import</h2>
+        </div>
+        <input type="file" id="fileInput" accept="image/*">
+    </div>
+</div> -->

@@ -1,8 +1,15 @@
+
 {
-    "name": "BrocoTab",
-    "description": "VisionOS NewTab Style.",
-    "version": "1.0",
+    "name": "VisionTab",
+    "description": "A customizable new tab page based on Apple's VisionOS",
+    "version": "2.0",
     "manifest_version": 3,
     "chrome_url_overrides": { "newtab": "index.html" },
-    "permissions": ["storage"]
+    "permissions": ["storage"],
+    "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["assets/script.js"]
+    }
+  ]
 }

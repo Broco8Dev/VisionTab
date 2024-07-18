@@ -1,34 +1,88 @@
 @font-face {
     font-family: 'SF Pro';
-    src: url('fonts/SF-Pro.ttf') format('truetype');
-    font-stretch: normal;
+    src: url('assets/fonts/SF-Pro.ttf') format('truetype');
+    font-stretch: 0 1000;
     font-weight: 100 900;
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'SF Pro';
-    src: url('fonts/SF-Pro.ttf') format('truetype');
-    font-stretch: expanded;
-    font-weight: 100 900;
-    font-style: normal;
+* {
+    font-family: 'SF Pro', sans-serif;
+    color: white;
+    margin: 0;
+    transition: all 0.6s cubic-bezier(0.29, -0.03, 0.16, 0.96);
+    animation: auto;
+    text-decoration: none;
 }
 
-@font-face {
-    font-family: 'SF Pro';
-    src: url('fonts/SF-Pro.ttf') format('truetype');
-    font-stretch: condensed;
-    font-weight: 100 900;
-    font-style: normal;
+:root {
+    /* BACKGROUND */
+        /* background */
+        --bg-img: url(bg.png);
+
+
+    /* CLOCK */
+        /* color of the clock */
+        --clock-color: rgba(255, 255, 255, 1.00);
+
+        /* color of the clock's colon */
+        --clock-colon: rgba(255, 255, 255, 0.50);
+
+        /* size of the clock */
+        --clock-size: 100px; 
+
+
+    /* DATE */
+        /* color of the date */
+        --date-color: rgba(255, 255, 255, 0.75);
+
+        /* size of the date */
+        --date-size: 25px; 
+        
+
+
+    /* BASES ; more menu and main menu */
+        /* color of the base */
+        --base-background: rgba(255, 255, 255, 0);
+
+        /* border of the base;
+           - width *SOLID* color */
+        --base-border: 1px solid rgba(255, 255, 255, 0.10);
+
+        /* roundness of the base */
+        --base-roundness: 20px;
+        
+        /* shadow of the base;
+           - hoz-offset ver-offset blur-strength color*/
+        --base-shadow: 0px 0px 20px #0000007a;
+    
+
+
+    /* SHORTCUTS */
+        /* show the shortcut label (edited in html file);
+          - set to auto if yes, set to none if no */
+        --show-label: none;
+    
+        /* roundness of shortcut icons*/
+        --sc-roundness: 21%;
+    
+
+
+    /* SEARCH BAR */
+        /* color of the searchbar */
+        --sb-background: rgba(0, 0, 0, 0.45);
+
+        
 }
+
 
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'SF Pro';
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
     background-size:cover;
     background-position: center;
@@ -37,9 +91,80 @@ body, html {
     background-attachment: fixed;
 }
 
-#main-container {
-    display: flex;
-    align-items: center;
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none; 
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    border-radius: 16px;
+}
+  
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 15px;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 16px;
+    box-shadow: inset 0px 3px 7px rgba(0, 0, 0, 0.317);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+
+    -webkit-appearance: none;
+    appearance: none; 
+
+    height: 15px;
+    width: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 2px solid rgb(0, 119, 255);;
+
+    box-shadow: -407px 0 0 400px rgb(0, 119, 255);
+}
+
+.color-wheel {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.9;
+    margin-left: 5px;
+}
+
+.color-wheel:hover {
+    transform: scale(1.1);
+}
+
+.color-wheel:active {
+    transform: scale(0.8);
+}
+
+.color-wheel::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-wheel::-webkit-color-swatch {
+    border: 2px solid rgba(96, 96, 96, 0.674);
+    border-radius: 50%;
+}
+
+.color-wheel::-webkit-color-swatch {
+    border-radius: 50%;
+    box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.514);
+}
+
+.color-wheel::-webkit-color-picker {
+    width: 200px;
+    height: 200px;
+    border: 10px solid red;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: transparent;
 }
 
 #clock-container {
@@ -48,60 +173,65 @@ body, html {
 }
 
 #date {
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: #ffffffd8;
-    margin-bottom: 0px;
-    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
+    font-size: var(--date-size);
+    color: var(--date-color);
+    font-size: var(--date-size);
 }
 
 #clock {
-    font-size: 6rem;
-    font-weight: 700;
-    color: #ffffff;
-    font-stretch: expanded;
-    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
-    margin-top: 0;
     font-family: 'SF Pro';
+    font-size: var(--clock-size);
+    font-stretch: 132%;
+    color: var(--clock-color);
+    font-weight: 600;
+    display: flex;
 }
 
-#clock .colon {
-    font-size: 6rem;
-    font-stretch: expanded;
-    font-weight: 700;
-    opacity: 0.6;
-    margin: 0;
-    margin-left: -20px;
-    margin-right: -20px;
-    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
-    font-family: 'SF Pro';
+#hours {
+    color: var(--clock-color);
+}
+
+#minutes {
+    color: var(--clock-color);
+}
+
+#colon {
+    font: inherit;
+    color: var(--clock-colon);
 }
 
 #quick-actions {
-    border: 1.2px solid rgba(255, 255, 255, 0.185);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
-    backdrop-filter: blur(50px);
-    padding: 20px;
-    border-radius: 25px;
-    justify-content: center;
-    align-items: center;
+    width: fit-content;
+    padding: 12px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    width: 335px;
-    height: 150px;
-    margin-bottom: 15px;
+    justify-content: center;
+    align-content: center;
+    border-radius: var(--base-roundness);
+    border: var(--base-border);
+    background: var(--base-background);
+    box-shadow: var(--base-shadow);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    gap: 20px;
 }
 
-#quick-actions p {
-    color: white;
-    margin-top: 0;
-    font-family: 'SF Pro';
-}
+.section-label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    text-align: center;
+    width: 100%;}
 
 #actions-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: row;
     gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: fit-content;
+    max-width: 356px;
 }
 
 .action-icon {
@@ -133,69 +263,79 @@ body, html {
     object-fit:cover;
 }
 
-#search-container {
-    margin-bottom: 15px;
+#searchbar {
     width: 100%;
-
-    justify-content: center;
-    align-items: center;
+    padding: 12px;
+    box-sizing: border-box;
     display: flex;
-}
-
-#search-wrapper {
-    position: relative;
-    width: 100%;
-
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    display: flex;
-}
+    align-content: center;
+    border-radius: calc(var(--base-roundness) - 12px);
+    background: var(--sb-background);
+    box-shadow: 1px 1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px 1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.23);
+    gap: 5px;
+    transition: all 0.1s cubic-bezier(0.68, 0.12, 0.15, 1.07);
 
-#search-input {
-    width: 100%;
-    padding: 10px 0px 10px 35px;
-    border: none;
-    border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.253);
+    p{
+        color: inherit;
+        font: inherit;
+    }
+    form{
+        width: 60px;
+        color: inherit;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    input{
+        color: inherit;
+        font:inherit;
+        width: 64px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        background: transparent;
+        border: transparent;
+        outline: none;
+    }
+    ::placeholder {
+        color: inherit;
+    }
+}
+#searchbar:focus-within {
     color: white;
-    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.158);
-    font-size: 16px;
-    outline: none;
-}
 
-#search-input::placeholder {
-    color: rgba(255, 255, 255, 0.452);
-    font-family: 'SF Pro';
-}
-
-#search-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.452);
+    input {
+        width: 100%;
+    }
+    form {
+        width: 100%;
+    }
 }
 
 #weather-info {
-    color: rgb(255, 255, 255);
-    font-size: 0.9rem;
-    position: relative;
+    width: 100%;
+    height: 178px;
+    padding: 12px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    border: 1.2px solid rgba(255, 255, 255, 0.185);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
-    backdrop-filter: blur(50px);
-    padding: 20px;
-    border-radius: 25px;
-
-    width: 335px;
-    height: 150px;
-}
-
-#weather-info p {
-    margin: 5px 0;
-    color: rgba(255, 255, 255, 0.674);
-
+    justify-content: space-around;
+    align-content: center;
+    border-radius: var(--base-roundness);
+    border: var(--base-border);
+    background: var(--base-background);
+    box-shadow: var(--base-shadow);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
 }
 
 #weather-desc {
@@ -205,6 +345,7 @@ body, html {
 
 #weather-margin {
     margin-top: 0;
+    opacity: 0.7;
 }
 
 .weather-hstack {
@@ -220,10 +361,11 @@ body, html {
     text-align: right;
     display: flex;
     flex-direction: column;
+    gap: 5px
 }
 
 .weather-hstack h1 {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 50px;
     margin-top: 0;
     margin-bottom: 0;
@@ -252,61 +394,31 @@ body, html {
 #widgets {
     display: flex;
     flex-direction: column;
-}
-
-#settings-popup {
-    width: 110px;
-
-    border-radius: 20px;
-    border: 1.2px solid rgba(255, 255, 255, 0.185);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
-    backdrop-filter: blur(50px);
-    margin-left: auto;
-    margin-right: 80px;
-
-
-    opacity: 0;
-    filter: scale(0.9);
-    transform: translateY(-50px);
-    transition: all 0.3s ease;
-    filter: blur(10px);
-    pointer-events: none;
-}
-
-#settings-popup.show {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(-40px);
-    filter: scale(1);
-    pointer-events: auto;
-}
-
-#settings-popup h1 {
-    color: rgba(255, 255, 255, 0.582);
-    font-size: 15px;
-    font-weight: 500;
-    margin-left: 10px;
-    margin-bottom: 2px;
+    gap: 20px;
 }
 
 #settings-button {
-    font-size: 24px;
-    cursor: pointer;
-    width: 40px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
     height: 40px;
-    z-index: 100;
-    margin-left: auto;
-    margin-right: 30px;
-    margin-top: 30px;
-    border-radius: 50px;
-    border: 1.2px solid rgba(255, 255, 255, 0.185);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.201);
-    backdrop-filter: blur(50px);
-    transition: all 0.3s ease;
+    width: 40px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    cursor: pointer;
+    gap: 20px;
+
+    border-radius: var(--base-roundness);
+    border: var(--base-border);
+    background: var(--base-background);
+    box-shadow: var(--base-shadow);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    outline:none;
+    font-size: 16px;
 }
 
 #settings-button:active {
@@ -318,16 +430,239 @@ body, html {
     font-size: 20px;
     color: rgba(255, 255, 255, 0.543);
 }
+#settings-close {
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--base-roundness);
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+#settings-close:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#settings-close:active {
+    transform: scale(0.5);
+    background-color: rgba(255, 255, 255, 0.142);
+}
 
 #settings-button:hover {
     scale: 1.1;
 }
 
-.settings-container {
-    width: 100%;
-    height: 100%;
+#settings-menu {
+    animation: settings-close 0.5s ease;
     position: fixed;
-    z-index: -1;
+    top: 20px;
+    right: -400px;
+    width: 400px;
+    height: calc(100vh - 40px);
+
+    box-sizing: border-box;
+    padding: 10px 10px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+
+    border-radius: var(--base-roundness);
+    border: var(--base-border);
+    background: var(--base-background);
+    box-shadow: var(--base-shadow);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    outline:none;
+}
+
+#settings-menu.open {
+    animation: settings-open 0.5s cubic-bezier(0, 0, 0, 1);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 400px;
+    height: calc(100vh - 40px);
+
+    box-sizing: border-box;
+    padding: 10px 10px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+
+    border-radius: var(--base-roundness);
+    border: var(--base-border);
+    background: var(--base-background);
+    box-shadow: var(--base-shadow);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    outline:none;
+}
+
+#settings-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+
+    h2 {
+        width: 100%;
+    }
+}
+
+#settings-list {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.setting {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.setting-label {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--date-color);
+}
+
+.setting-input {
+    width: calc(100% - 40px);
+    padding: 9px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    border-radius: 12px;
+    background: var(--sb-background);
+    background-blend-mode: luminosity, color-burn;
+    box-shadow: 1px 1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px 1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    border: none;
+    transition: all 0.5s ease;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    gap: 5px;
+    border: none;
+    outline: none;
+    overflow: visible;
+    ::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+}
+
+#uploadDiv:hover {
+    transform: scale(1.1);
+    box-shadow: 1px -4px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -4px 4px 0px rgba(0, 0, 0, 0.10) inset;
+}
+
+#uploadDiv:active{
+transform: scale(0.8);
+background-color: rgba(255, 255, 255, 0.142);
+}
+
+
+
+#save-settings {
+    width: 200px;
+    min-height: 35px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: var(--sb-background);
+    background-blend-mode: luminosity, color-burn;
+    box-shadow: 1px -1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    border: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+#reset-settings {
+    width: 200px;
+    min-height: 35px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: var(--sb-background);
+    background-blend-mode: luminosity, color-burn;
+    box-shadow: 1px -1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px);
+    border: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+#reset-settings:hover{
+    scale: 1.1;
+    box-shadow: 1px -4px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -4px 4px 0px rgba(0, 0, 0, 0.10) inset;
+}
+
+#save-settings:hover{
+    scale: 1.1;
+    box-shadow: 1px -4px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -4px 4px 0px rgba(0, 0, 0, 0.10) inset;
+}
+
+#save-settings:active{
+    transform: scale(0.8);
+    background-color: rgba(255, 255, 255, 0.142);
+}
+
+#reset-settings:active{
+    transform: scale(0.8);
+    background-color: rgba(255, 255, 255, 0.142);
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    display: block;
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
 }
 
 
@@ -345,6 +680,8 @@ body, html {
     display: inline-block;
     background-color: #00000034;
     margin: 2px;
+    margin-top: -10px;
+    margin-bottom: 0;
     border-radius: 30px;
     cursor: pointer;
     box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.233);
@@ -388,42 +725,6 @@ div {
     align-items: center;
     justify-content: center;
     width: 100%;
-}
-
-.settings-bgbutton {
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.653);
-    margin-bottom: 5px;
-    cursor: pointer;
-    width: calc(100% - 15px);
-    height: 25px;
-    background-color: rgba(0, 0, 0, 0.162);
-    z-index: 100;
-    border-radius: 50px;
-    border: 1.2px solid rgba(255, 255, 255, 0.185);
-    box-shadow: inset 0px 3px 7px rgba(0, 0, 0, 0.192);
-    backdrop-filter: blur(50px);
-    transition: all 0.3s ease;
-    
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.settings-bgbutton:active {
-    transform: scale(0.8);
-    background-color: rgba(255, 255, 255, 0.142);
-}
-
-.settings-bgbutton:hover {
-    scale:1.05;
-}
-
-.settings-bgbutton h2 {
-    font-size: 13px;
-    font-weight: 500;
 }
 
 .toggle-switch .toggle-knob {
