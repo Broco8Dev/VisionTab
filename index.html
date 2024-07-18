@@ -43,7 +43,7 @@
     </div>
 
     <div class="settings-container">
-        <div id="settings-button" onclick="toggleSettingsPanel()">
+        <div id="settings-button">
             <h1>􀍟</h1>
         </div>
 
@@ -56,12 +56,21 @@
             <span class="toggle-celsius toggle-switch">
                 <span class="toggle-knob"></span>
               </span>
+              <h1>BG Image</h1>
+
+              <div class="settings-center">
+                <div class="settings-bgbutton" id="uploadDiv">
+                    <h2>􀈃 Import BG</h2>
+                </div>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
         </div>
     </div>
 
     <script src="script.js"></script>
     <script>
         window.addEventListener('load', fetchWeather);
+        window.addEventListener('load', fetchAndSetBackgroundImage);
     </script>
 </body>
 </html>
