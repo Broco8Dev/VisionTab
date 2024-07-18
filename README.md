@@ -1,5 +1,5 @@
 <p align="right">
-  <img align="right" height="140" src="https://github.com/PureKFD/PureKFD/blob/main/Icon.png?raw=true" alt="PureKFD Logo" style="float: right; border-radius: 10px;"/>
+  <img align="right" height="140" src="https://raw.githubusercontent.com/Broco8Dev/VisionTab/main/icon.png" alt="VisionTab Logo" style="float: right; border-radius: 10px;"/>
 </p>
 
 <h1 align="left">VisionTab - VisionOS NewTab for Chromium</h1>
