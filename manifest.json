@@ -1,8 +1,8 @@
 
 {
-    "name": "VisionTab",
+    "name": "VisionTab Beta",
     "description": "A customizable new tab page based on Apple's VisionOS",
-    "version": "2.0",
+    "version": "1.2",
     "manifest_version": 3,
     "chrome_url_overrides": { "newtab": "index.html" },
     "permissions": ["storage"],

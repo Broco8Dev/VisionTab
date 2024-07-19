@@ -69,9 +69,132 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('settings-button').addEventListener('click', toggleSettingsPanel);
+    
+    document.getElementById('settings-button').addEventListener('click', function() { togglePanel('settings-popup'); });
+    document.getElementById('plus-button').addEventListener('click', function() { togglePanel('add-menu'); });
+    document.getElementById('add-close').addEventListener('click', function() { togglePanel('add-menu'); });
+    
+    document.getElementById('add-button').addEventListener('click', function() { addShortcut(); });
+    initializeShortcuts();
+    loadShortcutsFromLocalStorage();
     fetchAndSetBackgroundImage();
 });
+
+
+function addShortcut() {
+    var shortcutUrl = document.getElementById('shortcut-url-field').value;
+    var iconUrl = document.getElementById('icon-url-field').value;
+    var shortcuts = document.getElementById('actions-grid');
+
+    if (shortcutUrl && iconUrl) {
+        shortcuts.innerHTML += `<a href="${shortcutUrl}" class="action-icon"><img src="${iconUrl}" alt="Shortcut"></a>`;
+        
+        saveShortcutToLocalStorage(shortcutUrl, iconUrl);
+    } else {
+        alert('Please provide both the shortcut URL and the icon URL.');
+    }
+}
+
+function saveShortcutToLocalStorage(shortcutUrl, iconUrl) {
+    let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    shortcuts.push({ url: shortcutUrl, icon: iconUrl });
+    localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+    loadShortcutsFromLocalStorage();
+}
+
+function initializeShortcuts() {
+    let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    
+    if (shortcuts.length === 0) {
+        const defaultShortcuts = [
+            { url: "https://discord.com/channels/@me", icon: "assets/discord.png" },
+            { url: "https://www.youtube.com", icon: "assets/youtube.png" },
+            { url: "https://www.x.com", icon: "assets/twitter.png" },
+            { url: "https://www.github.com", icon: "assets/github.png" }
+        ];
+        
+        localStorage.setItem('shortcuts', JSON.stringify(defaultShortcuts));
+    }
+}
+
+function loadShortcutsFromLocalStorage() {
+    let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    let shortcutsContainer = document.getElementById('actions-grid');
+    let addShortcutsContainer = document.getElementById('shortcuts-add');
+
+    shortcutsContainer.innerHTML = '';
+    addShortcutsContainer.innerHTML = '';
+    
+    shortcuts.forEach(shortcut => {
+        let shortcutWrapper = document.createElement('div');
+        shortcutWrapper.classList.add('shortcut-wrapper', 'fade-in');
+        shortcutWrapper.innerHTML = `
+            <a href="${shortcut.url}" class="action-icon">
+                <img src="${shortcut.icon}" alt="Shortcut">
+            </a>
+            <button class="remove-shortcut" data-url="${shortcut.url}" style="backdrop-filter: blur(20px);">􀆄</button>
+        `;
+
+        addShortcutsContainer.appendChild(shortcutWrapper);
+
+        let actionIcon = document.createElement('a');
+        actionIcon.href = shortcut.url;
+        actionIcon.classList.add('action-icon', 'fade-in');
+        actionIcon.innerHTML = `<img src="${shortcut.icon}" alt="Shortcut">`;
+
+        shortcutsContainer.appendChild(actionIcon);
+
+        setTimeout(() => {
+            shortcutWrapper.classList.add('visible');
+            actionIcon.classList.add('visible');
+        }, 100);
+    });
+
+    let addShortcut = document.createElement('a');
+    addShortcut.id = 'add-shortcut';
+    addShortcut.classList.add('action-icon', 'fade-in');
+    addShortcut.innerHTML = '􀅼';
+
+    addShortcutsContainer.appendChild(addShortcut);
+
+    setTimeout(() => {
+        addShortcut.classList.add('visible');
+    }, 100);
+
+    document.getElementById('add-shortcut').addEventListener('click', function() { togglePanel('add-shortcut-panel'); });
+    
+    addShortcutsContainer.querySelectorAll('.remove-shortcut').forEach(button => {
+        button.addEventListener('click', function() {
+            removeShortcut(this.getAttribute('data-url'));
+        });
+    });
+}
+
+function removeShortcut(url) {
+    let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    const shortcutElement = document.querySelector(`.shortcut[data-url="${url}"]`);
+    
+    if (shortcutElement) {
+        shortcutElement.classList.add('fade-out');
+
+        setTimeout(() => {
+            shortcutElement.remove();
+            shortcuts = shortcuts.filter(shortcut => shortcut.url !== url);
+            localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+            loadShortcutsFromLocalStorage();
+        }, 500);
+    } else {
+        shortcuts = shortcuts.filter(shortcut => shortcut.url !== url);
+        localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+        loadShortcutsFromLocalStorage();
+    }
+}
+
+
+function togglePanel(id) {
+    const popup = document.getElementById(id);
+    popup.classList.toggle('show');
+}
 
 function fetchAndSetBackgroundImage() {
     const imageData = localStorage.getItem('bgImage');
@@ -89,11 +212,6 @@ function setBackgroundImage(imageData) {
 document.getElementById('uploadDiv').addEventListener('click', function() {
     document.getElementById('fileInput').click();
 });
-
-function toggleSettingsPanel() {
-    const settingsPopup = document.getElementById('settings-popup');
-    settingsPopup.classList.toggle('show');
-}
 
 function updateDateTime() {
     const now = new Date();
@@ -318,13 +436,14 @@ fetchWeather();
 
 document.addEventListener('DOMContentLoaded', () => {
     const elements = {
-        'bg-img': document.getElementById('bg-img'),
         'clock-color': document.getElementById('clock-color'),
         'clock-color-alpha': document.getElementById('clock-alpha'),
+        'clock-size': document.getElementById('clock-size'),
         'clock-colon': document.getElementById('clock-colon'),
         'clock-colon-alpha': document.getElementById('clock-colon-alpha'),
         'date-color': document.getElementById('date-color'),
         'date-color-alpha': document.getElementById('date-alpha'),
+        'date-size': document.getElementById('date-size'),
         'base-background': document.getElementById('base-background'),
         'base-background-alpha': document.getElementById('base-alpha'),
         'base-border': document.getElementById('base-border'),
@@ -332,12 +451,13 @@ document.addEventListener('DOMContentLoaded', () => {
         'base-shadow': document.getElementById('base-shadow'),
         'sc-roundness': document.getElementById('sc-roundness'),
         'sb-background': document.getElementById('sb-background'),
+        'sb-background-alpha': document.getElementById('sb-alpha'),
         'saveButton': document.getElementById('save-settings'),
         'resetButton': document.getElementById('reset-settings')
     };
 
     const cssVars = [
-        'bg-img', 'clock-color', 'clock-colon', 'clock-size',
+        'clock-color', 'clock-colon', 'clock-size',
         'date-color', 'date-size', 'base-background', 'base-border',
         'base-roundness', 'base-shadow', 'sc-roundness', 'sb-background'
     ];
@@ -375,6 +495,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rgba = hexToRGBA(element.value, alpha);
                 document.documentElement.style.setProperty(`--${cssVar}`, rgba);
                 newSettings[cssVar] = rgba;
+            } else if(element) {
+                const value = element.value;
+                document.documentElement.style.setProperty(`--${cssVar}`, value);
+                newSettings[cssVar] = value;
             }
         });
         chrome.storage.local.set(newSettings);
