@@ -50,7 +50,7 @@
         --base-border: 1px solid rgba(255, 255, 255, 0.10);
 
         /* roundness of the base */
-        --base-roundness: 20px;
+        --base-roundness: 24px;
         
         /* shadow of the base;
            - hoz-offset ver-offset blur-strength color*/
@@ -77,6 +77,7 @@
 
 
 body, html {
+    cursor: url(assets/cursors/default.png) 0 0, auto;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -95,15 +96,15 @@ input[type="range"] {
     width: calc(100% - 5px);
     -webkit-appearance: none;
     appearance: none; 
-    cursor: grab;
+    cursor: url(assets/cursors/open.png) 0 0, auto;
     outline: none;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: calc(var(--base-roundness) - 12px);
     background: none;
     box-shadow: 1px 1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px 1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
 }
 input[type="range"]:active {
-    cursor: grabbing;
+    cursor: url(assets/cursors/grab.png) 0 0, auto;
 }
   
 input[type="range"]::-webkit-slider-runnable-track {
@@ -133,7 +134,7 @@ input[type="range"]::-webkit-slider-thumb {
     height: 30px;
     background-color: transparent;
     border: none;
-    cursor: pointer;
+    cursor: url(assets/cursors/colorpicker.png) 0 0, auto;
     padding: 0;
     opacity: 1;
     box-shadow: none;
@@ -240,10 +241,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .action-icon {
+    cursor: url(assets/cursors/pointer.png) 5 0, auto;
     width: 60px;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
+    border-radius: var(--sc-roundness);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,7 +264,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 .action-icon img {
     width: 60px;
-    border-radius: 13px;
+    border-radius: var(--sc-roundness);
     height: 60px;
     object-fit:cover;
 }
@@ -414,7 +416,7 @@ input[type="range"]::-webkit-slider-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    cursor: url(assets/cursors/pointer.png) 5 0, auto;
     gap: 20px;
 
     border-radius: var(--base-roundness);
@@ -442,7 +444,7 @@ input[type="range"]::-webkit-slider-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    cursor: url(assets/cursors/pointer.png) 5 0, auto;
     gap: 20px;
 
     border-radius: var(--base-roundness);
@@ -482,7 +484,7 @@ input[type="range"]::-webkit-slider-thumb {
     align-items: center;
     border-radius: var(--base-roundness);
     outline: none;
-    cursor: pointer;
+    cursor: url(assets/cursors/pointer.png) 5 0, auto;
     border: none;
     background: none;
     font-size: 12px;
@@ -543,7 +545,7 @@ input[type="range"]::-webkit-slider-thumb {
     opacity: 0;
     filter: blur(50px);
     user-select: none;
-    cursor: default;
+    cursor: url(assets/cursors/default.png) 0 0, auto;
 
     #menu-header, #settings-list {
         * {
@@ -610,7 +612,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 #add-shortcut {
-    cursor: pointer;
+    cursor: url(assets/cursors/pointer.png) 5 0, auto;
 }
 
 #shortcuts-add {
@@ -694,7 +696,6 @@ input[type="range"]::-webkit-slider-thumb {
     opacity: 0;
     filter: blur(50px);
     user-select: none;
-    cursor: default;
 
     
     -moz-transition: all 0.4s cubic-bezier(0, 0, 1, 0);
@@ -803,7 +804,7 @@ input[type="range"]::-webkit-slider-thumb {
     align-content: flex-start;
     justify-content: flex-start;
     align-items: flex-start;
-    border-radius: calc(var(--base-roundness) - 12px);
+    border-radius: 6px;
 }
 
 .setting {
@@ -821,7 +822,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .toggle-setting {
-    width: calc(100% - 5px);
+    width: calc(100% - 10px);
     height: fit-content;
     display: flex;
     gap: 10px;
@@ -854,13 +855,13 @@ input[type="range"]::-webkit-slider-thumb {
 .setting-input {
     width: calc(100% - 5px);
     padding: 9px;
-    cursor: pointer;
+    cursor: url(assets/cursors/pointer.png) 5 0, auto;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
-    border-radius: 12px;
+    border-radius: calc(var(--base-roundness) - 12px);
     background: var(--sb-background);
     background-blend-mode: luminosity, color-burn;
     box-shadow: 1px 1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px 1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
@@ -912,7 +913,7 @@ input[type="range"]::-webkit-slider-thumb {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: calc(var(--base-roundness) - 12px);
     background: var(--sb-background);
     background-blend-mode: luminosity, color-burn;
     box-shadow: 1px -1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
@@ -922,7 +923,7 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 13.5px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
+     cursor: url(assets/cursors/pointer.png) 5 0, auto;
 }
 
 .remove-shortcut {
@@ -940,7 +941,7 @@ input[type="range"]::-webkit-slider-thumb {
     color: black;
     font-weight: 800;
     text-align: center;
-    cursor: pointer;
+     cursor: url(assets/cursors/pointer.png) 5 0, auto;
     outline:none;
     font-size: 10px;
     position: fixed;
@@ -962,7 +963,7 @@ input[type="range"]::-webkit-slider-thumb {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: calc(var(--base-roundness) - 12px);
     background: var(--sb-background);
     background-blend-mode: luminosity, color-burn;
     box-shadow: 1px -1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
@@ -972,7 +973,7 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 13.5px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
+     cursor: url(assets/cursors/pointer.png) 5 0, auto;
 }
 
 #reset-settings {
@@ -983,7 +984,7 @@ input[type="range"]::-webkit-slider-thumb {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: calc(var(--base-roundness) - 12px);
     background: var(--sb-background);
     background-blend-mode: luminosity, color-burn;
     box-shadow: 1px -1.5px 4px 0px rgba(0, 0, 0, 0.08) inset, 1px -1.5px 4px 0px rgba(0, 0, 0, 0.10) inset;
@@ -993,7 +994,7 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 13.5px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
+     cursor: url(assets/cursors/pointer.png) 5 0, auto;
 }
 
 #reset-settings:hover{
@@ -1039,6 +1040,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .toggle-switch {
+    cursor: url(assets/cursors/pointer.png) 5 0, auto;
     height: 30px;
     width: 50px;
     display: inline-block;
@@ -1049,8 +1051,6 @@ input[type="range"]::-webkit-slider-thumb {
     background-blend-mode: luminosity;
     backdrop-filter: blur(20px);
     border: none;
-}
-.toggle-switch:last-child {
 }
 
 @keyframes fade-in {
