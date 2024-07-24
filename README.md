@@ -18,7 +18,7 @@
 
 VisionTab is a VisionOS styled New Tab for Chromium based web browsers. It's sleek, customizable, and recognizable.
 
-**VisionTab Safari Port
+**VisionTab Safari Port**
 https://github.com/ntcrft/VisionTab-safari
 
 ## How to Install:
