@@ -1,251 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" target="_blank" href="assets/favicon.png">
-    <title>VisionTab</title>
-</head>
-<body>
-    <div id="clock-container">
-        <div id="date"></div>
-        <div id="clock">
-            <span id="hours"></span>
-            <span id="colon">:</span>
-            <span id="minutes"></span>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" target="_blank" href="assets/favicon.png">
+        <title>VisionTab</title>
+    </head>
+    <body>
+        <div id="loadingscreen" class="loading">
+            <img src="assets/loadspinner.png" id="loadspinner">
         </div>
-    </div>
 
-    <div id="widgets">
-        <div id="quick-actions">
-            <div id="searchbar">
-                <p>􀊫</p>
-                <form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
-                    <input name="q" type="text" placeholder="Search" autocomplete="off">
-                </form>
-            </div>
-        
-            <p class="section-label">􀎧 Pinned</p>
-
-            <div id="actions-grid">
-                <a href="https://discord.com/channels/@me" class="action-icon"><img src="assets/discord.png" alt="Discord"></a>
-                <a href="https://www.youtube.com" class="action-icon"><img src="assets/youtube.png" alt="YouTube"></a>
-                <a href="https://www.x.com" class="action-icon"><img src="assets/twitter.png" alt="Twitter"></a>
-                <a href="https://www.github.com" class="action-icon"><img src="assets/github.png" alt="GitHub"></a>
+        <div id="clock-container">
+            <div id="date"></div>
+            <div id="clock">
+                <span id="hours"></span>
+                <span id="colon">:</span>
+                <span id="minutes"></span>
             </div>
         </div>
-        <div id="weather-info">
 
-        </div>
-    </div>
-</div>
+        <div id="widgets">
+            <div id="quick-actions">
+                <div id="searchbar" for="search-input">
+                    <p>􀊫</p>
+                    <form for="search-input" action="https://www.google.com/search" method="get" target="_blank" id="search-form">
+                        <input name="q" type="text" placeholder="Search" autocomplete="off" id="search-input">
+                    </form>
+                </div>
+            
+                <p class="section-label">􀎧 Pinned</p>
 
-    
-    <div id="settings-button">
-        <h1>􀍟</h1>
-    </div>
-
-    <div id="plus-button">
-        <h1>􀅼</h1>
-    </div>
-
-    <div id="add-menu">
-        <div id="menu-header">
-            <h2>􀅼 Add Features</h2>
-            <button id="add-close" class="close-button">􀆄</button>
-        </div>
-
-        <div id="settings-list" style="overflow: visible;">
-            <div class="setting">
-                <label class="setting-label">Pinned Shortcuts:</label>
-                <div id="shortcuts-add">
-                    <!-- <a href="https://discord.com/channels/@me" class="action-icon"><img src="assets/discord.png" alt="Discord"></a>
-                    <a href="https://www.youtube.com" class="action-icon"><img src="assets/youtube.png" alt="YouTube"></a>
-                    <a href="https://www.x.com" class="action-icon"><img src="assets/twitter.png" alt="Twitter"></a>
-                    <a href="https://www.github.com" class="action-icon"><img src="assets/github.png" alt="GitHub"></a> -->
-                    <!-- <a id="add-shortcut" class="action-icon">􀅼</a> -->
+                <div id="actions-grid">
                 </div>
             </div>
+            <div id="weather-info">
 
-            <div class="setting">
-                <div id="add-shortcut-panel">
-                    <input placeholder="Shortcut URL" type="text" id="shortcut-url-field" class="setting-input" value="">
-                    <input placeholder="Icon URL" type="text" id="icon-url-field" class="setting-input" value="">
-                    <button id="add-button">􀃳 Add</button>
-                </div>
             </div>
         </div>
+    </div>
+
         
+        <div id="settings-button">
+            <h1>􀍟</h1>
         </div>
 
-
-    <div id="settings-menu">
-        <div id="menu-header">
-            <h2>􀍟 Settings</h2>
-            <button id="settings-close" class="close-button">􀆄</button>
+        <div id="plus-button">
+            <h1>􀅼</h1>
         </div>
-        <div id="settings-list">
-            <div class="toggle-setting">
-                <label for="toggle-24h" class="setting-label">24h Time:</label>
-                <span class="toggle-24h toggle-switch">
-                    <span class="toggle-knob"></span>
-                </span>
+
+        <div id="add-menu">
+            <div id="menu-header">
+                <h2>􀅼 Shortcuts and Widgets</h2>
+                <button id="add-close" class="close-button">􀆄</button>
+            </div>
+
+            <div id="settings-list" style="overflow: visible;">
+                <div class="setting">
+                    <div class="toggle-setting active" name="toggle-weather">
+                        <label for="toggle-weather" class="setting-label">Weather Widget</label>
+                        <span class="toggle-weather toggle-switch">
+                            <span class="toggle-knob"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="setting">
+                    <label class="setting-label">Pinned Shortcuts</label>
+                    <div id="shortcuts-add">
+                        <!-- <a href="https://discord.com/channels/@me" class="action-icon"><img src="assets/discord.png" alt="Discord"></a>
+                        <a href="https://www.youtube.com" class="action-icon"><img src="assets/youtube.png" alt="YouTube"></a>
+                        <a href="https://www.x.com" class="action-icon"><img src="assets/twitter.png" alt="Twitter"></a>
+                        <a href="https://www.github.com" class="action-icon"><img src="assets/github.png" alt="GitHub"></a> -->
+                        <!-- <a id="add-shortcut" class="action-icon">􀅼</a> -->
+                    </div>
+                </div>
+
+                <div class="setting">
+                    <div id="add-shortcut-panel">
+                        <input placeholder="Shortcut URL" type="text" autocomplete="off" id="shortcut-url-field" class="setting-input" value="">
+                        <input placeholder="Icon URL" type="text" autocomplete="off" id="icon-url-field" class="setting-input" value="">
+                        <button id="add-button">􀃳 Add</button>
+                    </div>
+                </div>
             </div>
             
-            <div class="toggle-setting">
-                <label for="toggle-celsius" class="setting-label">Use Celsius:</label>
-                <span class="toggle-celsius toggle-switch">
-                    <span class="toggle-knob"></span>
-                </span>
             </div>
 
-            <div class="setting">
-                <label for="fileInput" class="setting-label">Background Image:</label>
-                <div class="settings-center">
-                <div class="setting-input" id="uploadDiv">
-                    􀈃 Import
+
+        <div id="settings-menu">
+            <div id="menu-header">
+                <h2>􀍟 Settings</h2>
+                <button id="reset-settings">􀅈 Reset</button>
+                <button id="settings-close" class="close-button">􀆄</button>
+            </div>
+            <div id="settings-list">
+                <div class="setting">
+                    <div class="toggle-setting active" name="toggle-24h">
+                        <label for="toggle-24h" class="setting-label">24h Time</label>
+                        <span class="toggle-24h toggle-switch">
+                            <span class="toggle-knob"></span>
+                        </span>
+                    </div>
+                    
+                    <div class="toggle-setting" name="toggle-celsius">
+                        <label for="toggle-celsius" class="setting-label">Celsius Temperature</label>
+                        <span class="toggle-celsius toggle-switch">
+                            <span class="toggle-knob"></span>
+                        </span>
+                    </div>
                 </div>
-                <input type="file" id="fileInput" accept="image/*">
+                <div class="setting">
+                    <div class="settings-center">
+                        <div class="setting-input" id="uploadDiv">
+                            <span class="setting-label" name="text">Import Background Image</span>
+                            <span class="setting-label" name="icon">􀈃</span>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*">
+                    </div>
+                </div>
+        
+                <div class="setting">
+                    <label class="setting-label">Clock Settings</label>
+                    <div class="toggle-setting active">
+                        <label for="clock-color" class="setting-label">Color</label>
+                        <input type="color" id="clock-color" name="clock-color" class="color-wheel" value="#FFFFFF">
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="clock-alpha" name="clock-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="1">
+                        <label class="setting-slider-label">􀪫 Alpha</label>
+                        <p class="slider-value"></p>
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀄾 Stretch</label>
+                        <p class="slider-value" id="clock-stretch-value"></p>
+                        <input type="range" id="clock-stretch" name="clock-stretch" class="alpha-slider" min="30" max="150" step="1" value="132" list="stretchaxes">
+                        <div class="slider-snapper" style="left: 24%;"></div>
+                        <div class="slider-snapper" style="left: 57.7%;"></div>
+                        <div class="slider-snapper" style="left: 83.7%;"></div>
+
+                        <datalist id="stretchaxes">
+                            <option value="59">
+                            <option value="100">
+                            <option value="132">
+                        </datalist>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <input type="range" id="clock-sizevalue" name="clock-sizevalue" class="alpha-slider" min="20" max="200" step="1" value="100" list="clocksize">
+                        <label class="setting-slider-label">􀅐 Size</label>
+                        <p class="slider-value" id="clocksize-value"></p>
+                        <div class="slider-snapper" style="left: 44%;"></div>
+
+                        <datalist id="clocksize">
+                            <option value="100">
+                        </datalist>
+                    </div>
+                </div>
+        
+                <div class="setting">
+                    <label class="setting-label">Clock Colon Settings</label>
+                    <div class="toggle-setting active">
+                        <label for="clock-colon" class="setting-label">Color</label>
+                        <input type="color" id="clock-colon" name="clock-colon" class="color-wheel" value="#FFFFFF">
+                    </div>
+
+                    <div class="slider-container">
+                        <input type="range" id="clock-colon-alpha" name="clock-colon-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.5" list="colon-alpha">
+                        <label class="setting-slider-label">􀪫 Alpha</label>
+                        <div class="slider-snapper" style="left: 49.3%;"></div>
+
+                        <datalist id="colon-alpha">
+                            <option value="0.5">
+                        </datalist>
+                    </div>
+                </div>
+        
+                <div class="setting">
+                    <label class="setting-label">Subtext Settings</label>
+                    <div class="toggle-setting active">
+                        <label for="date-color" class="setting-label">Color</label>
+                        <input type="color" id="date-color" name="date-color" class="color-wheel" value="#FFFFFF">
+                    </div>
+
+                    <div class="slider-container">
+                        <input type="range" id="date-alpha" name="date-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.75" list="subtext-alpha">
+                        <label class="setting-slider-label">􀪫 Alpha</label>
+                        <div class="slider-snapper" style="left: 74%;"></div>
+
+                        <datalist id="subtext-alpha">
+                            <option value="0.75">
+                        </datalist>
+                    </div> 
+                </div>
+        
+                <div class="setting">
+                    <label class="setting-label">Date Size</label>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀅐 Size</label>
+                        <p class="slider-value" id="datesize-value"></p>
+                        <input type="range" id="date-sizevalue" name="date-sizevalue" class="alpha-slider" min="5" max="100" step="1" value="25" list="date-size">
+                        <div class="slider-snapper" style="left: 20.7%;"></div>
+
+                        <datalist id="date-size">
+                            <option value="25">
+                        </datalist>
+                    </div>
+                </div>
+        
+                <div class="setting">
+                    <label class="setting-label">Base Background Settings</label>
+                    <div class="toggle-setting active">
+                        <label for="base-background" class="setting-label">Color</label>
+                        <input type="color" id="base-background" name="base-background" class="color-wheel">
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀪫 Alpha</label>
+                        <input type="range" id="base-alpha" name="base-background-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0">
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀧏 Blur Strength</label>
+                        <p class="slider-value" id="base-blur-value"></p>
+                        <input type="range" id="base-blurvalue" name="base-blurvalue" class="alpha-slider" value="20" min="0" max="100" step="1" list="default-baseblur">
+                        <div class="slider-snapper" style="left: 19.7%;"></div>
+
+                        <datalist id="default-baseblur">
+                            <option value="20">
+                        </datalist>
+                    </div>
+                    
+                    <div class="setting-input" for="base-roundvalue">
+                        <label for="base-roundvalue">􀅐 Roundness</label>
+                        <input placeholder="24" type="number" autocomplete="off" id="base-roundvalue" name="base-roundvalue" value="">
+                        <p for="base-roundvalue">px</p>
+                    </div>
+
+                    <!-- <div class="slider-container">
+                        <label class="setting-slider-label">􀅐 Roundness</label>
+                        <p class="slider-value" id="base-roundvalue"></p>
+                        <input type="range" id="base-roundvalue" name="base-roundvalue" class="alpha-slider" min="0" max="100" step="1" value="24">
+                    </div> -->
+                </div>
+        
+                <div class="setting">
+                    <label class="setting-label">Base Border</label>
+
+                    <div class="toggle-setting active">
+                        <label for="baseborder-color" class="setting-label">Color</label>
+                        <input type="color" id="baseborder-color" name="baseborder-color" class="color-wheel" value="#FFFFFF">
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="baseborder-color-alpha" name="clock-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.1" list="default-baseborderalpha">
+                        <label class="setting-slider-label">􀪫 Alpha</label>
+                        <div class="slider-snapper" style="left: 10%;"></div>
+                        <div class="slider-snapper" style="left: 49.2%;"></div>
+
+                        <datalist id="default-baseborderalpha">
+                            <option value="0.1">
+                        </datalist>
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀉨 Weight</label>
+                        <p class="slider-value" id="baseborder-width-value"></p>
+                        <input type="range" id="baseborder-widthvalue" name="baseborder-widthvalue" class="alpha-slider" min="0" max="5" step="1" value="1">
+                        <div class="slider-snapper" style="left: 19.7%;"></div>
+                    </div>
+                </div>
+        
+                <div class="setting">
+                    <label for="base-shadow" class="setting-label">Base Shadow</label>
+
+                    <div class="toggle-setting active">
+                        <label for="baseshadow-color" class="setting-label">Color</label>
+                        <input type="color" id="baseshadow-color" name="baseshadow-color" class="color-wheel" value="#000000">
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="baseshadow-color-alpha" name="baseshadow-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.5">
+                        <label class="setting-slider-label">􀪫 Alpha</label>
+                        <div class="slider-snapper" style="left: 49.3%;"></div>
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀧏 Blur Strength</label>
+                        <p class="slider-value" id="baseshadow-blur-value"></p>
+                        <input type="range" id="baseshadow-blur" name="baseshadow-blur" class="alpha-slider" min="0" max="50" step="1" value="20">
+                        <div class="slider-snapper" style="left: 39.5%;"></div>
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀄾 Horizontal Offset</label>
+                        <p class="slider-value" id="baseshadow-hoz-value"></p>
+                        <input type="range" id="baseshadow-hoz" name="baseshadow-hoz" class="alpha-slider" min="-20" max="20" step="1" value="0" list="snapoffsets">
+                        <div class="slider-snapper" style="left: 24.7%;"></div>
+                        <div class="slider-snapper" style="left: 49.2%;"></div>
+                        <div class="slider-snapper" style="left: 74%;"></div>
+
+                        <datalist id="snapoffsets">
+                            <option value="-10">
+                            <option value="0">
+                            <option value="10">
+                        </datalist>
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀑹 Vertical Offset</label>
+                        <p class="slider-value" id="baseshadow-ver-value"></p>
+                        <input type="range" id="baseshadow-ver" name="baseshadow-ver" class="alpha-slider" min="-20" max="20" step="1" value="0">
+                        <div class="slider-snapper" style="left: 24.7%;"></div>
+                        <div class="slider-snapper" style="left: 49.2%;"></div>
+                        <div class="slider-snapper" style="left: 74%;"></div>
+                    </div>
+                </div>
+        
+                <div class="setting">
+                    <label for="sc-roundness" class="setting-label">Shortcut Roundness (%)</label>
+                    <input placeholder="21%" type="text" autocomplete="off" id="sc-roundness" name="sc-roundness" class="setting-input" value="">
+                </div>
+        
+                <div class="setting">
+                    <label class="setting-label">Field Background</label>
+                    <div class="toggle-setting active">
+                        <label for="base-background" class="setting-label">Color</label>
+                        <input type="color" id="sb-background" name="sb-background" class="color-wheel">
+                    </div>
+
+                    <div class="slider-container">
+                        <label class="setting-slider-label">􀪫 Alpha</label>
+                        <p class="slider-value" id="base-blur-value"></p>
+                        <input type="range" id="sb-alpha" name="sb-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.45" list="default-sbalpha">
+                        <div class="slider-snapper" style="left: 44.5%;"></div>
+                        <div class="slider-snapper" style="left: 49.2%;"></div>
+
+                        <datalist id="default-sbalpha">
+                            <option value="0.45">
+                        </datalist>
+                    </div>
+                </div>
             </div>
-            </div>
-    
-            <div class="setting">
-                <label for="clock-color" class="setting-label">Clock Color:</label>
-                <input type="color" id="clock-color" name="clock-color" class="color-wheel" value="#FFFFFF">
-                <label class="setting-slider-label">􀪫 Alpha</label>
-                <input type="range" id="clock-alpha" name="clock-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="1">
-            </div>
-    
-            <div class="setting">
-                <label for="clock-colon" class="setting-label">Clock Colon Color:</label>
-                <input type="color" id="clock-colon" name="clock-colon" class="color-wheel" value="#FFFFFF">
-                <label class="setting-slider-label">􀪫 Alpha</label>
-                <input type="range" id="clock-colon-alpha" name="clock-colon-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.5">
-            </div>
-    
-            <div class="setting">
-                <label for="clock-size" class="setting-label">Clock Size:</label>
-                <input placeholder="100px" type="text" id="clock-size" name="clock-size" class="setting-input" value="">
-            </div>
-    
-            <div class="setting">
-                <label for="date-color" class="setting-label">Subtext Color:</label>
-                <input type="color" id="date-color" name="date-color" class="color-wheel" value="#FFFFFF">
-                <label class="setting-slider-label">􀪫 Alpha</label>
-                <input type="range" id="date-alpha" name="date-color-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.75">
-            </div>
-    
-            <div class="setting">
-                <label for="date-size" class="setting-label">Date Size:</label>
-                <input placeholder="25px" type="text" id="date-size" name="date-size" class="setting-input" value="">
-            </div>
-    
-            <div class="setting">
-                <label for="base-background" class="setting-label">Base Background Color:</label>
-                <input type="color" id="base-background" name="base-background" class="color-wheel">
-                <label class="setting-slider-label">􀪫 Alpha</label>
-                <input type="range" id="base-alpha" name="base-background-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0">
-            </div>
-    
-            <div class="setting">
-                <label for="base-border" class="setting-label">Base Border:</label>
-                <input placeholder="􀉨 1px solid rgba(255, 255, 255, 0.10)" type="text" id="base-border" name="base-border" class="setting-input" value="">
-            </div>
-    
-            <div class="setting">
-                <label for="base-roundness" class="setting-label">Base Roundness:</label>
-                <input placeholder="24px" type="text" id="base-roundness" name="base-roundness" class="setting-input" value="">
-            </div>
-    
-            <div class="setting">
-                <label for="base-shadow" class="setting-label">Base Shadow:</label>
-                <input placeholder="􀄾 􀑹 􀉨 0px 0px 20px #0000007a;" type="text" id="base-shadow" name="base-shadow" class="setting-input" value="">
-            </div>
-    
-            <div class="setting">
-                <label for="sc-roundness" class="setting-label">Shortcut Roundness (%):</label>
-                <input placeholder="21%" type="text" id="sc-roundness" name="sc-roundness" class="setting-input" value="">
-            </div>
-    
-            <div class="setting">
-                <label for="sb-background" class="setting-label">Field Background Color:</label>
-                <input type="color" id="sb-background" name="sb-background" class="color-wheel">
-                <label class="setting-slider-label">􀪫 Alpha</label>
-                <input type="range" id="sb-alpha" name="sb-alpha" class="alpha-slider" min="0" max="1" step="0.01" value="0.45">
-            </div>
+
+            <!-- <div id="setting-applyreset">
+                <button id="save-settings">􀫸 Apply</button>
+            </div> -->
         </div>
 
-        <div id="setting-applyreset">
-            <button id="save-settings">􀫸 Apply</button>
-            <button id="reset-settings">􀅈 Reset</button>
-        </div>
-
-    <script src="assets/script.js"></script>
-    <script>
-        window.addEventListener('load', fetchWeather);
-        window.addEventListener('load', fetchAndSetBackgroundImage);
-    </script>
-    <script>
-        const pickrOptions = {
-            theme: 'classic',
-            components: {
-                preview: true,
-                opacity: true,
-                hue: true,
-                interaction: {
-                    hex: true,
-                    rgba: true,
-                    hsla: true,
-                    hsva: true,
-                    cmyk: true,
-                    input: true,
-                    clear: true,
-                    save: true
+        <script src="assets/script.js"></script>
+        <script>
+            window.addEventListener('load', fetchWeather);
+            window.addEventListener('load', fetchAndSetBackgroundImage);
+        </script>
+        <script>
+            const pickrOptions = {
+                theme: 'classic',
+                components: {
+                    preview: true,
+                    opacity: true,
+                    hue: true,
+                    interaction: {
+                        hex: true,
+                        rgba: true,
+                        hsla: true,
+                        hsva: true,
+                        cmyk: true,
+                        input: true,
+                        clear: true,
+                        save: true
+                    }
                 }
-            }
-        };
-    
-        const clockColorPicker = Pickr.create({
-            el: '#clock-color-picker',
-            default: '#FFFFFF',
-            ...pickrOptions
-        });
-    
-        const clockColonPicker = Pickr.create({
-            el: '#clock-colon-picker',
-            default: '#FFFFFF',
-            ...pickrOptions
-        });
-    
-        const dateColorPicker = Pickr.create({
-            el: '#date-color-picker',
-            default: '#FFFFFF',
-            ...pickrOptions
-        });
-    
-        const baseBackgroundPicker = Pickr.create({
-            el: '#base-background-picker',
-            default: 'rgba(0, 0, 0, 0)',
-            ...pickrOptions
-        });
-    
-        const sbBackgroundPicker = Pickr.create({
-            el: '#sb-background-picker',
-            default: 'rgba(255, 255, 255, 0.45)',
-            ...pickrOptions
-        });
-    
-        // Add event listeners to handle color changes
-        [clockColorPicker, clockColonPicker, dateColorPicker, baseBackgroundPicker, sbBackgroundPicker].forEach(picker => {
-            picker.on('save', (color, instance) => {
-                const rgba = color.toRGBA();
-                console.log(instance.options.el.id, rgba);
-                // Here you can add logic to save the color or update the UI
+            };
+        
+            const clockColorPicker = Pickr.create({
+                el: '#clock-color-picker',
+                default: '#FFFFFF',
+                ...pickrOptions
             });
-        });
-    </script>
-</body>
+        
+            const clockColonPicker = Pickr.create({
+                el: '#clock-colon-picker',
+                default: '#FFFFFF',
+                ...pickrOptions
+            });
+        
+            const dateColorPicker = Pickr.create({
+                el: '#date-color-picker',
+                default: '#FFFFFF',
+                ...pickrOptions
+            });
+        
+            const baseBackgroundPicker = Pickr.create({
+                el: '#base-background-picker',
+                default: 'rgba(0, 0, 0, 0)',
+                ...pickrOptions
+            });
+        
+            const sbBackgroundPicker = Pickr.create({
+                el: '#sb-background-picker',
+                default: 'rgba(255, 255, 255, 0.45)',
+                ...pickrOptions
+            });
+        
+            // Add event listeners to handle color changes
+            [clockColorPicker, clockColonPicker, dateColorPicker, baseBackgroundPicker, sbBackgroundPicker].forEach(picker => {
+                picker.on('save', (color, instance) => {
+                    const rgba = color.toRGBA();
+                    console.log(instance.options.el.id, rgba);
+                    // Here you can add logic to save the color or update the UI
+                });
+            });
+        </script>
+    </body>
 </html>
 
 

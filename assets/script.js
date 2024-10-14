@@ -1,15 +1,24 @@
 let is24HourFormat = localStorage.getItem('is24HourFormat') === 'true' || false;
 let isCelsius = localStorage.getItem('isCelsius') === 'true' || false;
+let isWeatherVisible = localStorage.getItem('isWeatherVisible') === 'true' || false;
 // localStorage = new LocalStorage('./scratch', Number.MAX_VALUE);
 
 var toggler_24h = document.querySelector('.toggle-24h');
 var toggler_celsius = document.querySelector('.toggle-celsius');
+var toggler_weather = document.querySelector('.toggle-weather');
+var toggler_celsiusContainer = document.querySelector('.toggle-setting[name=toggle-celsius]');
+var weatherInfo = document.getElementById('weather-info');
 
 if (is24HourFormat) {
     toggler_24h.classList.add('active');
 }
 if (isCelsius) {
     toggler_celsius.classList.add('active');
+}
+if (isWeatherVisible) {
+    toggler_celsiusContainer.classList.add('active');
+    toggler_weather.classList.add('active');
+    weatherInfo.classList.add('active');
 }
 
 toggler_24h.onclick = function() {
@@ -24,6 +33,14 @@ toggler_celsius.onclick = function() {
     isCelsius = !isCelsius;
     localStorage.setItem('isCelsius', isCelsius);
     fetchWeather();
+}
+
+toggler_weather.onclick = function() {
+    toggler_weather.classList.toggle('active');
+    isWeatherVisible = !isWeatherVisible;
+    localStorage.setItem('isWeatherVisible', isWeatherVisible);
+    weatherInfo.classList.toggle('active');
+    toggler_celsiusContainer.classList.toggle('active');
 }
 
 document.getElementById('fileInput').addEventListener('change', function(event) {
@@ -127,7 +144,7 @@ function loadShortcutsFromLocalStorage() {
     
     shortcuts.forEach(shortcut => {
         let shortcutWrapper = document.createElement('div');
-        shortcutWrapper.classList.add('shortcut-wrapper', 'fade-in');
+        shortcutWrapper.classList.add('shortcut-wrapper');
         shortcutWrapper.innerHTML = `
             <a href="${shortcut.url}" class="action-icon">
                 <img src="${shortcut.icon}" alt="Shortcut">
@@ -139,7 +156,7 @@ function loadShortcutsFromLocalStorage() {
 
         let actionIcon = document.createElement('a');
         actionIcon.href = shortcut.url;
-        actionIcon.classList.add('action-icon', 'fade-in');
+        actionIcon.classList.add('action-icon');
         actionIcon.innerHTML = `<img src="${shortcut.icon}" alt="Shortcut">`;
 
         shortcutsContainer.appendChild(actionIcon);
@@ -152,7 +169,7 @@ function loadShortcutsFromLocalStorage() {
 
     let addShortcut = document.createElement('a');
     addShortcut.id = 'add-shortcut';
-    addShortcut.classList.add('action-icon', 'fade-in');
+    addShortcut.classList.add('action-icon');
     addShortcut.innerHTML = '􀅼';
 
     addShortcutsContainer.appendChild(addShortcut);
@@ -230,20 +247,14 @@ function updateDateTime() {
 
     if (dateElement.textContent !== dateString) {
         dateElement.textContent = dateString;
-        dateElement.classList.add('fade-in');
-        setTimeout(() => dateElement.classList.remove('fade-in'), 500);
     }
 
     if (hoursElement.textContent !== hours.toString().padStart(2, '0')) {
         hoursElement.textContent = hours.toString().padStart(2, '0');
-        hoursElement.classList.add('fade-in');
-        setTimeout(() => hoursElement.classList.remove('fade-in'), 500);
     }
 
     if (minutesElement.textContent !== minutes) {
         minutesElement.textContent = minutes;
-        minutesElement.classList.add('fade-in');
-        setTimeout(() => minutesElement.classList.remove('fade-in'), 500);
     }
 }
 
@@ -298,20 +309,6 @@ function displayCurrentWeather(data) {
     
     const weatherInfoElement = document.getElementById('weather-info');
     weatherInfoElement.innerHTML = weatherHTML;
-
-    const tempElement = document.getElementById('weather-temp');
-    const descElement = document.getElementById('weather-desc');
-    const marginElement = document.getElementById('weather-margin');
-
-    tempElement.classList.add('fade-in');
-    descElement.classList.add('fade-in');
-    marginElement.classList.add('fade-in');
-
-    setTimeout(() => {
-        tempElement.classList.remove('fade-in');
-        descElement.classList.remove('fade-in');
-        marginElement.classList.remove('fade-in');
-    }, 500);
 }
 
 function displayHourlyForecast(data) {
@@ -335,7 +332,7 @@ function displayHourlyForecast(data) {
         const weatherDescription = getWeatherIcon(weatherCode);
 
         forecastHTML.push(`
-            <div class="forecast-hour fade-in">
+            <div class="forecast-hour">
                 <p>${hour}${is24HourFormat ? ':00' : period}</p>
                 <p id="forecast-icon" style="color: ${weatherDescription.color};">${weatherDescription.icon}</p>
                 <p style="opacity: 0.8;">${temperature}°</p>
@@ -345,7 +342,7 @@ function displayHourlyForecast(data) {
 
     const hourlyForecastHTML = `
         <div id="hourly-forecast">
-            ${forecastHTML.join('')}
+        ${forecastHTML.join('')}
         </div>
     `;
 
@@ -354,12 +351,13 @@ function displayHourlyForecast(data) {
 
     const forecastHourElements = document.querySelectorAll('.forecast-hour');
     forecastHourElements.forEach((element) => {
-        element.classList.add('fade-in');
+        element.classList.remove('fade-in');
         setTimeout(() => {
             element.classList.remove('fade-in');
         }, 500);
     });
 }
+
 
 
 function getWeatherIcon(code) {
@@ -438,70 +436,74 @@ document.addEventListener('DOMContentLoaded', () => {
     const elements = {
         'clock-color': document.getElementById('clock-color'),
         'clock-color-alpha': document.getElementById('clock-alpha'),
-        'clock-size': document.getElementById('clock-size'),
+        'clock-stretch': document.getElementById('clock-stretch'),
+        'clock-sizevalue': document.getElementById('clock-sizevalue'),
         'clock-colon': document.getElementById('clock-colon'),
         'clock-colon-alpha': document.getElementById('clock-colon-alpha'),
+
         'date-color': document.getElementById('date-color'),
         'date-color-alpha': document.getElementById('date-alpha'),
-        'date-size': document.getElementById('date-size'),
+        'date-sizevalue': document.getElementById('date-sizevalue'),
+
         'base-background': document.getElementById('base-background'),
         'base-background-alpha': document.getElementById('base-alpha'),
-        'base-border': document.getElementById('base-border'),
-        'base-roundness': document.getElementById('base-roundness'),
-        'base-shadow': document.getElementById('base-shadow'),
+
+        'baseborder-color': document.getElementById('baseborder-color'),
+        'baseborder-color-alpha': document.getElementById('baseborder-color-alpha'),
+        'baseborder-widthvalue': document.getElementById('baseborder-widthvalue'),
+        'base-roundvalue': document.getElementById('base-roundvalue'),
+
+        'baseshadow-hoz': document.getElementById('baseshadow-hoz'),
+        'baseshadow-ver': document.getElementById('baseshadow-ver'),
+        'baseshadow-blur': document.getElementById('baseshadow-blur'),
+        'baseshadow-color': document.getElementById('baseshadow-color'),
+        'baseshadow-color-alpha': document.getElementById('baseshadow-color-alpha'),
+
+        'base-blurvalue': document.getElementById('base-blurvalue'),
+
         'sc-roundness': document.getElementById('sc-roundness'),
         'sb-background': document.getElementById('sb-background'),
         'sb-background-alpha': document.getElementById('sb-alpha'),
-        'saveButton': document.getElementById('save-settings'),
+
         'resetButton': document.getElementById('reset-settings')
     };
 
     const cssVars = [
-        'clock-color', 'clock-colon', 'clock-size',
-        'date-color', 'date-size', 'base-background', 'base-border',
-        'base-roundness', 'base-shadow', 'sc-roundness', 'sb-background'
+        'clock-color', 'clock-colon', 'clock-sizevalue', 'clock-stretch',
+        'date-color', 'date-sizevalue',
+        'base-background', 'baseborder-color', 'baseborder-widthvalue', 
+        'baseshadow-hoz', 'baseshadow-ver', 'baseshadow-blur', 'baseshadow-color', 'baseshadow-color-alpha', 
+        'base-roundvalue', 
+        'base-blurvalue', 
+        'sc-roundness', 'sb-background'
     ];
+
+    // Store default CSS values
+    const defaultCssValues = {};
+    cssVars.forEach(cssVar => {
+        defaultCssValues[cssVar] = getComputedStyle(document.documentElement).getPropertyValue(`--${cssVar}`).trim();
+    });
 
     // Load saved settings
     chrome.storage.local.get(cssVars, (result) => {
         cssVars.forEach(cssVar => {
             if (result[cssVar]) {
-                document.documentElement.style.setProperty(`--${cssVar}`, result[cssVar]);
-                const element = elements[cssVar];
-                if (element) {
-                    if (element.type === 'color') {
-                        // Convert RGBA to HEX
-                        let rgba = result[cssVar].match(/\d+/g);
-                        if (rgba && rgba.length >= 3) {
-                            let hex = '#' + ((1 << 24) + (parseInt(rgba[0]) << 16) + (parseInt(rgba[1]) << 8) + parseInt(rgba[2])).toString(16).slice(1);
-                            element.value = hex;
-                        }
-                    } else {
-                        element.value = result[cssVar];
-                    }
-                }
+                applyAndSaveSetting(cssVar, result[cssVar]);
             }
         });
     });
 
-    // Save settings
-    elements.saveButton.addEventListener('click', () => {
-        const newSettings = {};
-        cssVars.forEach(cssVar => {
-            const element = elements[cssVar];
-            const alphaElement = elements[`${cssVar}-alpha`];
-            if (element && alphaElement) {
-                const alpha = alphaElement.value;
-                const rgba = hexToRGBA(element.value, alpha);
-                document.documentElement.style.setProperty(`--${cssVar}`, rgba);
-                newSettings[cssVar] = rgba;
-            } else if(element) {
-                const value = element.value;
-                document.documentElement.style.setProperty(`--${cssVar}`, value);
-                newSettings[cssVar] = value;
-            }
-        });
-        chrome.storage.local.set(newSettings);
+    // Add event listeners for real-time updates
+    cssVars.forEach(cssVar => {
+        const element = elements[cssVar];
+        const alphaElement = elements[`${cssVar}-alpha`];
+        
+        if (element) {
+            element.addEventListener('input', () => updateSetting(cssVar));
+        }
+        if (alphaElement) {
+            alphaElement.addEventListener('input', () => updateSetting(cssVar));
+        }
     });
 
     elements.resetButton.addEventListener('click', () => {
@@ -509,12 +511,56 @@ document.addEventListener('DOMContentLoaded', () => {
         location.reload();
     });
 
+    function updateSetting(cssVar) {
+        const element = elements[cssVar];
+        const alphaElement = elements[`${cssVar}-alpha`];
+        let value;
+
+        if (element && element.value === '') {
+            // If input is empty, use the default value
+            value = defaultCssValues[cssVar];
+        } else if (element && alphaElement) {
+            const alpha = alphaElement.value;
+            value = hexToRGBA(element.value, alpha);
+        } else if (element) {
+            value = element.value;
+        }
+
+        if (value) {
+            applyAndSaveSetting(cssVar, value);
+        }
+    }
+
+    function applyAndSaveSetting(cssVar, value) {
+        document.documentElement.style.setProperty(`--${cssVar}`, value);
+        const element = elements[cssVar];
+        if (element) {
+            if (element.type === 'color') {
+                // Convert RGBA to HEX
+                let rgba = value.match(/\d+/g);
+                if (rgba && rgba.length >= 3) {
+                    let hex = '#' + ((1 << 24) + (parseInt(rgba[0]) << 16) + (parseInt(rgba[1]) << 8) + parseInt(rgba[2])).toString(16).slice(1);
+                    element.value = hex;
+                }
+            } else {
+                element.value = value !== defaultCssValues[cssVar] ? value : '';
+            }
+        }
+        // Save to storage only if it's different from the default
+        if (value !== defaultCssValues[cssVar]) {
+            chrome.storage.local.set({ [cssVar]: value });
+        } else {
+            chrome.storage.local.remove(cssVar);
+        }
+    }
+
     // Debugging logs
     console.log('Customization menu loaded.');
+    console.log('Default CSS values:', defaultCssValues);
     cssVars.forEach(cssVar => {
         const element = elements[cssVar];
         if (element) {
-            console.log(`Default ${cssVar}:`, element.value);
+            console.log(`Current ${cssVar}:`, element.value);
         } else {
             console.warn(`Element for ${cssVar} not found`);
         }
@@ -528,9 +574,39 @@ function hexToRGBA(hex, alpha) {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-function applyAlpha(cssVar, alpha) {
-    const element = elements[cssVar];
-    const color = element.value;
-    const rgba = hexToRGBA(color, alpha);
-    document.documentElement.style.setProperty(`--${cssVar}`, rgba);
-}
+
+// Function to get and display the CSS variable value from the <html> or :root element
+function updateSliderValues() {
+    // Get the current value of the --clock-size variable from the <html> or :root element
+    const rootElement = document.documentElement;
+    const clockStretch = getComputedStyle(rootElement).getPropertyValue('--clock-stretch').trim();
+    const clockSize = getComputedStyle(rootElement).getPropertyValue('--clock-sizevalue').trim();
+    const dateSize = getComputedStyle(rootElement).getPropertyValue('--date-sizevalue').trim();
+    const baseBlur = getComputedStyle(rootElement).getPropertyValue('--base-blurvalue').trim();
+    const borderWidth = getComputedStyle(rootElement).getPropertyValue('--baseborder-widthvalue').trim();
+    const shadowBlur = getComputedStyle(rootElement).getPropertyValue('--baseshadow-blur').trim();
+    const shadowHoz = getComputedStyle(rootElement).getPropertyValue('--baseshadow-hoz').trim();
+    const shadowVer = getComputedStyle(rootElement).getPropertyValue('--baseshadow-ver').trim();
+
+    // Update the <p> element with the clock size
+    document.getElementById('clock-stretch-value').textContent = clockStretch + "%";
+    document.getElementById('clocksize-value').textContent = clockSize + "px";
+    document.getElementById('datesize-value').textContent = dateSize + "px";
+    document.getElementById('base-blur-value').textContent = baseBlur + "px";
+    document.getElementById('baseborder-width-value').textContent = borderWidth + "px";
+    document.getElementById('baseshadow-blur-value').textContent = shadowBlur + "px";
+    document.getElementById('baseshadow-hoz-value').textContent = shadowHoz + "px";
+    document.getElementById('baseshadow-ver-value').textContent = shadowVer + "px";
+  }
+
+// Call the function initially to display the current clock size
+updateSliderValues();
+
+// Set up an interval to continuously check and update the clock size every 100ms
+setInterval(updateSliderValues, 100);
+
+
+
+window.onload = function() {
+    document.getElementById("loadingscreen").classList.add("loaded");
+};
