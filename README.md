@@ -22,17 +22,18 @@ VisionTab is a VisionOS styled New Tab for Chromium based web browsers. It's sle
 https://github.com/ntcrft/VisionTab-safari
 
 ## How to Install:
-1. Install the Github as a .zip or Clone the repository.
-2. Extract the .zip File (If it is a .zip)
-3. On the Top Right of Chrome, Click The Puzzle Icon
-4. Press 'Manage Extesions'
-5. Enable Developer Mode on the Top Right of the Newly Opened Page.
-6. Click 'Load Unpacked'
-7. Select the Extracted Folder (If there are sub directories, keep opening them until you reach the folder tha!t contains the source code)
+1. Download the .zip file frm the latest/preferred release.
+2. Extract the .zip file.
+3. On the top right of chrome, click the puzzle icon
+4. Select 'Manage Extensions'
+5. Enable Developer Mode on the top right of the newly opened page.
+6. Select 'Load Unpacked'
+7. Select the extracted folder. If there are subfolders, keep opening them until you reach the folder that contains the source code.
 8. Enjoy!
 
 ## Credits
-
+**Javascript**
 <a href="https://github.com/Broco8Dev"><img src="https://img.shields.io/static/v1?style=social&message=Developer&logo=github&logoColor=000000&label=BrocoDev" /></a>
 
+**Literally everything else**
 <a href="https://github.com/kewla1d"><img src="https://img.shields.io/static/v1?style=social&message=Developer&logo=github&logoColor=000000&label=KewlAid" /></a>
