@@ -33,4 +33,4 @@ https://github.com/ntcrft/VisionTab-safari
 
 ## Credits
 <a href="https://github.com/Broco8Dev"><img src="https://img.shields.io/static/v1?style=social&message=Developer&logo=github&logoColor=000000&label=BrocoDev" /></a>
-<a href="https://github.com/kewla1d"><img src="https://img.shields.io/static/v1?style=social&message=Developer&logo=github&logoColor=000000&label=KewlAid" /></a>
+<a href="https://github.com/kewla1d"><img src="https://img.shields.io/static/v1?style=social&message=Designer&logo=github&logoColor=000000&label=KewlAid" /></a>
