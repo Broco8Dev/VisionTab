@@ -32,8 +32,5 @@ https://github.com/ntcrft/VisionTab-safari
 8. Enjoy!
 
 ## Credits
-**Javascript**
 <a href="https://github.com/Broco8Dev"><img src="https://img.shields.io/static/v1?style=social&message=Developer&logo=github&logoColor=000000&label=BrocoDev" /></a>
-
-**Literally everything else**
 <a href="https://github.com/kewla1d"><img src="https://img.shields.io/static/v1?style=social&message=Developer&logo=github&logoColor=000000&label=KewlAid" /></a>
